@@ -1,1 +1,14 @@
-$primary-color: #000099;
+@mixin font-face($font-name, $font-path) {
+
+}
+// https://www.sessions.edu/color-calculator/
+$primary-color: #004a96;
+$secondary-color: #961400;
+$text-story-color: #fff;
+$box-color: #004a96;
+$close-box-color: #fff;
+
+$font-primary-path: './assets/common/CloudsOfDespairLsf-3RKG.ttf';
+$font-secondary-path: './assets/common/blzee.ttf';
+
+

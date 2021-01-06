@@ -10,20 +10,20 @@
     </div>
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
     .welcome-screen {
         background-image: url('../../assets/common/screen-background.jpg');
         background-repeat: repeat;
         width: 60vw;
-        height: 60vh;
+        height: 70vh;
         margin: auto;
         top: 10vh;
         position: relative;
-        color: #bec3ff;
+        color: $text-story-color;
     }
 
     .welcome-screen .container {
-        padding: 5vh;
+        padding: 3vh;
         margin: auto;
     }
 
@@ -34,8 +34,8 @@
       left: 78.5vw;
       height: 5vh;
       width: 3vw;
-      background-color: #bec3ff;
-      color:#222230;
+      background-color: $box-color;
+      color: $close-box-color;
       border-radius: 50%;
       display: inline-block;
       font-size:3vh;

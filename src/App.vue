@@ -15,7 +15,7 @@ import Welcome from './components/welcome/Welcome.vue'
 import Game from './components/game/Game';
 import Videoconference from './components/videoconference/Videoconference';
 import './assets/common/normalize.css'
-import './assets/common/common.css'
+import './assets/common/common.scss'
 import firebaseUtil from '@/lib/firebase-util';
 
 const STATES = {
@@ -61,15 +61,23 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
 @font-face {
-  font-family: 'Title1Family';
-  src: url('./assets/common/CloudsOfDespairLsf-3RKG.ttf')  format('truetype')
+  font-family: 'PrimaryFontFamily';
+  src: url(#{$font-primary-path})  format('truetype');
 }
+
+@font-face {
+  font-family: 'SecondaryFontFamily';
+  src: url(#{$font-secondary-path})  format('truetype');
+}
+
 @font-face {
   font-family: 'Digital7';
   src: url('./assets/common/digital-7.ttf')  format('truetype')
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

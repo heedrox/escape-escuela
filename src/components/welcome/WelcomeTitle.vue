@@ -12,26 +12,29 @@
     padding-top: 10vh;
     font-size: 5em;
     color: $primary-color;
-    font-family:'Title1Family', Arial, Helvetica,serif;
+    font-family:'PrimaryFontFamily', Arial, Helvetica,serif;
+    text-shadow: 2px 2px white, -2px -2px white;
   }
 
   h1 {
     padding-top: 2vh;
     font-size: 8em;
     color: $primary-color;
-    font-family:'Title1Family', Arial, Helvetica,serif;
+    font-family:'PrimaryFontFamily', Arial, Helvetica,serif;
+    text-shadow: 2px 2px white, -2px -2px white;
   }
 
   a.start {
-    font-family:'Title1Family', Arial, Helvetica,serif;
+    font-family:'SecondaryFontFamily', Arial, Helvetica,serif;
     display: block;
     font-size: 4em;
-    color: #8efc80;
+    color: $secondary-color;
     text-decoration: underline;
     position: absolute;
     bottom: 5vh;
     text-align: center;
     width:100%;
+    text-shadow: 2px 2px white, -2px -2px white;
   }
 </style>
 <script>

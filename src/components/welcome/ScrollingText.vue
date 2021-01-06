@@ -3,17 +3,17 @@
     <VNodeToHtml :vnode="$slots.default" @html="setContentFrom($event)" />
   </p>
 </template>
-<style scoped>
+<style scoped lang="scss">
     p {
         text-align: left;
         vertical-align: middle;
         font-size: 1.7em;
         overflow-x: hidden;
         overflow-y: scroll;
-        height: 43vh;
+        height: 65vh;
         width: 100%;
         line-height: 1.5em;
-        font-family:'SpaceJunk', Courier, serif;
+        font-family:'SecondaryFontFamily', Courier, serif;
     }
 
     p::-webkit-scrollbar {
@@ -21,24 +21,22 @@
     }
 
     p::-webkit-scrollbar-thumb {
-
-        background: #bec3ff;
+        background: $primary-color;
         -webkit-border-radius: 0.2ex;
     }
 
 </style>
 <style>
   .blinker {
-    animation: blinker 1s linear infinite;
     font-family:serif;
     font-weight: bold;
     font-size: 1.3em;
-  }
-
-  @keyframes blinker {
-    50% {
-      opacity: 0;
-    }
+    background-image:url("../../assets/common/pencil.png");
+    width: 2vw;
+    height: 2vw;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 </style>
 <script>
@@ -63,7 +61,7 @@ export default {
   computed: {
     content() {
       const numLetters = ((this.now - this.startDate) / 1000) * 15;
-      const letters = this.fullContent.substring(0, numLetters) + '<span class="blinker"> |</span>';
+      const letters = this.fullContent.substring(0, numLetters) + ' <span class="blinker"></span>';
       const newContent = letters.replace(new RegExp(BR_MARKER, 'g'), '<br>');
       if (newContent.indexOf(END_MARKER) > 0) {
         clearInterval(this.timer);

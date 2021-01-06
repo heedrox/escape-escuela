@@ -30,3 +30,6 @@ npm run lint
 
 https://domain/GAMECODE/numberplayers/usercode
 
+## Atribuciones
+
+<a href='https://www.freepik.com/photos/background'>Background photo created by benzoix - www.freepik.com</a>
