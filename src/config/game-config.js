@@ -31,6 +31,7 @@ export default {
   defaultActiveRoom: 2,
   availableRooms: [2, 4, 5, 6, 7, 8, 9],
   players: playerCodes,
+  embedVideoconference: false,
   codes: [
     '0000', //to test
 

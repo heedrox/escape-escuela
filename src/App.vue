@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Welcome v-if="state === 'WELCOME'" @start="createCode(); startVideo()" />
-    <Videoconference :is-existent="state === 'VIDEO' || state === 'GAME'"
+    <Welcome v-if="state === 'WELCOME'" @start="createCode(); closeWelcome()" />
+    <Videoconference v-if="shouldEmbedVideoconference()"
+                     :is-existent="state === 'VIDEO' || state === 'GAME'"
                      :is-visible="state === 'VIDEO'"
                      @start="startGame()"
                      @show-video="showVideo()"
@@ -14,6 +15,7 @@
 import Welcome from './components/welcome/Welcome.vue'
 import Game from './components/game/Game';
 import Videoconference from './components/videoconference/Videoconference';
+import gameConfig from './config/game-config';
 import './assets/common/normalize.css'
 import './assets/common/common.scss'
 import firebaseUtil from '@/lib/firebase-util';
@@ -48,14 +50,17 @@ export default {
         this.$firestoreRefs.gameState.set(BLANK_FIREBASE_GAME);
       }
     },
-    startVideo() {
-      this.state = STATES.VIDEO;
+    closeWelcome() {
+      this.state = this.shouldEmbedVideoconference() ? STATES.VIDEO : STATES.GAME;
     },
     startGame() {
       this.state = STATES.GAME;
     },
     showVideo() {
       this.state = STATES.VIDEO;
+    },
+    shouldEmbedVideoconference() {
+      return gameConfig.embedVideoconference
     }
   }
 }
