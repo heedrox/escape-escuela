@@ -12,7 +12,7 @@
     </div>
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
   input {
     margin-top: 3vh;
     height: 4vh;
@@ -23,7 +23,7 @@
     font-family: Consolas, Courier, serif;
     text-transform: uppercase;
     background-color: #111111;
-    border: solid 0.5vh rgb(13, 6, 182);
+    border: solid 0.5vh $primary-color;
     border-radius: 2vh;
     color: white;
   }

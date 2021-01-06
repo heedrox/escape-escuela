@@ -28,7 +28,7 @@ const byNumberDestinataries = (ifTwo, ifThree) => ({ ifTwo, ifThree });
 const when2 = (resIf2, resIf3) => (getNumberPlayers() === 2 ? resIf2 : resIf3);
 
 export default {
-  defaultActiveRoom: 2,
+  defaultActiveRoom: 4,
   availableRooms: [2, 4, 5, 6, 7, 8, 9],
   players: playerCodes,
   embedVideoconference: false,

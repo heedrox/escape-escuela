@@ -139,7 +139,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
   .adminBox {
     position: absolute;
     font-size: 1.5em;
@@ -178,7 +178,7 @@ export default {
   }
 
   .room.active {
-    border: solid 1vh rgb(13, 6, 182);
+    border: solid 1vh $primary-color;
   }
 
   .separator {
