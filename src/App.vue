@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <div v-if="state === 'INIT'">
+      Iniciando...
+    </div>
+    <div>
+      {{ gameState }}
+    </div>
     <Welcome v-if="state === 'WELCOME'" @start="createCode(); closeWelcome()" />
     <Videoconference v-if="shouldEmbedVideoconference()"
                      :is-existent="state === 'VIDEO' || state === 'GAME'"
@@ -21,12 +27,19 @@ import './assets/common/common.scss'
 import firebaseUtil from '@/lib/firebase-util';
 
 const STATES = {
+  INIT: 'INIT',
   WELCOME: 'WELCOME',
   GAME: 'GAME',
   VIDEO: 'VIDEO',
 };
 
-const BLANK_FIREBASE_GAME = { ready: true, unlockedItems: [], unlockedRooms: [2]};
+const BLANK_FIREBASE_GAME = {
+  ready: true,
+  unlockedItems: gameConfig.defaultUnlockedItems,
+  unlockedRooms: gameConfig.defaultUnlockedRooms
+};
+
+const loggedPromise = firebaseUtil.login();
 
 export default {
   name: 'App',
@@ -37,17 +50,29 @@ export default {
   },
   data() {
     return {
-      state: STATES.WELCOME,
+      state: STATES.INIT,
+      gameState: null,
+      loggedPromise: null,
     }
   },
-  firestore: {
-    gameState: firebaseUtil.doc('/')
+  async mounted() {
+    console.log('mounted init');
+    try {
+      await loggedPromise;
+    } catch (error) {
+      alert('Hubo un problema accediendo a internet. Por favor, actualiza la página. Si el mensaje se repite, ' +
+          'cuéntaselo a Jordi');
+    }
+    this.state = STATES.WELCOME;
+    this.$bind('gameState', firebaseUtil.doc('/'));
   },
   methods: {
     createCode() {
       if (!this.gameState) {
         console.log('Creating game state');
         this.$firestoreRefs.gameState.set(BLANK_FIREBASE_GAME);
+      } else {
+        console.log('game state already created', this.gameState);
       }
     },
     closeWelcome() {
@@ -62,7 +87,7 @@ export default {
     shouldEmbedVideoconference() {
       return gameConfig.embedVideoconference
     }
-  }
+  },
 }
 </script>
 
@@ -70,17 +95,17 @@ export default {
 
 @font-face {
   font-family: 'PrimaryFontFamily';
-  src: url(#{$font-primary-path})  format('truetype');
+  src: url(#{$font-primary-path}) format('truetype');
 }
 
 @font-face {
   font-family: 'SecondaryFontFamily';
-  src: url(#{$font-secondary-path})  format('truetype');
+  src: url(#{$font-secondary-path}) format('truetype');
 }
 
 @font-face {
   font-family: 'Digital7';
-  src: url('./assets/common/digital-7.ttf')  format('truetype')
+  src: url('./assets/common/digital-7.ttf') format('truetype')
 }
 
 #app {
@@ -97,6 +122,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  overflow:hidden;
+  overflow: hidden;
 }
 </style>

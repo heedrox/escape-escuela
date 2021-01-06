@@ -26,8 +26,9 @@
     letter-spacing: normal;
     color:#333;
   }
-</style><script>
-import { db } from '../../../config/db';
+</style>
+<script>
+import firebaseUtil from '@/lib/firebase-util';
 
 const asCounterWithPadding = (number, padding) => number < 10 ? (padding + number) : (number + '')
 import { addHours, diffMinutes, diffSeconds } from '../../../lib/dates'
@@ -45,7 +46,7 @@ export default {
     }
   },
   firestore: {
-    gameState: db.doc(FIREBASE_URL),
+    gameState: firebaseUtil.doc(FIREBASE_URL),
   },
   computed: {
     endTime: function() {
