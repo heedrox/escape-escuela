@@ -9,7 +9,7 @@
     />
   </div>
 </template>
-<style scoped>
+<style scoped type="scss">
   .zoomed-item {
     position: fixed;
     top: 10vh;
@@ -19,7 +19,7 @@
     background:black;
     white-space: nowrap; /* This is required unless you put the helper span closely near the img */
     text-align: center;
-    border-color: rgb(13, 6, 182);
+    border-color: $primary-color;
     border-width: 2vh;
   }
   .zoomed-item img {
