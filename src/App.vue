@@ -3,9 +3,6 @@
     <div v-if="state === 'INIT'">
       Iniciando...
     </div>
-    <div>
-      {{ gameState }}
-    </div>
     <Welcome v-if="state === 'WELCOME'" @start="createCode(); closeWelcome()" />
     <Videoconference v-if="shouldEmbedVideoconference()"
                      :is-existent="state === 'VIDEO' || state === 'GAME'"

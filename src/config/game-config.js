@@ -65,8 +65,8 @@ export default {
     anInvisibleItem(211, 2, '010-humanos-idiotas.mp3', 'MP3'),
     anInvisibleItem(212, 2, '020-elevator.mp3', 'MP3'),
 
-    anItem(401, 4, 'room-4.jpg'),
-    anItem(402, 4, 'ladrillo-2.jpg'),
+    anItem(401, 4, 'room-jail.jpg'),
+    anItem(402, 4, 'lockbox-con-candado.jpg'),
     aPluginItem(403, 4, 'numbers-game.jpg', NumbersGame),
     aDifferentItem(404, 4, 'tooche-pista-3.jpg', 'tooche-pista-3b.jpg', byNumberDestinataries([2], [1, 2])),
 

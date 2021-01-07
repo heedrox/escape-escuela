@@ -33,3 +33,4 @@ https://domain/GAMECODE/numberplayers/usercode
 ## Atribuciones
 
 <a href='https://www.freepik.com/photos/background'>Background photo created by benzoix - www.freepik.com</a>
+<a href='https://www.freepik.es/photos/vintage'>Foto de Vintage creado por kjpargeter - www.freepik.es</a>

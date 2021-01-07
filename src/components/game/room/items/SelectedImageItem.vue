@@ -35,7 +35,7 @@
   }
   .magnifying-glass {
     position: fixed;
-    border: solid 1vh #bec3ff;
+    border: solid 1vh #cdcdcd;
     border-radius: 50%;
     cursor: none;
     width: 250px;
