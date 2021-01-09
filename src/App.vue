@@ -33,7 +33,7 @@ const STATES = {
 const BLANK_FIREBASE_GAME = {
   ready: true,
   unlockedItems: gameConfig.defaultUnlockedItems,
-  unlockedRooms: gameConfig.defaultUnlockedRooms
+  unlockedRooms: gameConfig.defaultUnlockedRooms,
 };
 
 const loggedPromise = firebaseUtil.login();

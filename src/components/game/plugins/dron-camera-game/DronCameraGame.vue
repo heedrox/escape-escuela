@@ -2,28 +2,29 @@
   <div>
     <div class="zoomed-item box" @click.stop="">
       <span class="helper"></span>
-      <img id="fieldImage" alt="campo juego" :src="getUrl()" @load="recalculateClientRect()" />
+      <img v-if="dronCellPosition" id="fieldImage" alt="campo juego" :src="getUrl()" @load="recalculateClientRect()" />
     </div>
+
     <div class="hole" :style="{
       left: holeLeft, top: holeTop,
       borderLeft: borderLeft, borderTop: borderTop, borderRight: borderRight, borderBottom: borderBottom}"
     >
       <img class="dron" :src="getDronImage()" width="40px" height="auto" alt="dron" />
     </div>
-    <div v-if="(dronCellPosition.top > 0) && canMoveTo(0, -1)" class="arrow arrow-up"
-         :style="{ left: arrowUpPos.left, top: arrowUpPos.top }"
+    <div v-if="canIMove('up') && dronCellPosition && (dronCellPosition.top > 0) && canMoveTo(0, -1)"
+         class="arrow arrow-up" :style="{ left: arrowUpPos.left, top: arrowUpPos.top }"
          @click="moveDron(0,-1)"
     />
-    <div v-if="(dronCellPosition.left < 7) && canMoveTo(1, 0)" class="arrow arrow-right"
-         :style="{ left: arrowRightPos.left, top: arrowRightPos.top }"
+    <div v-if="canIMove('right') && dronCellPosition && (dronCellPosition.left < 7) && canMoveTo(1, 0)"
+         class="arrow arrow-right" :style="{ left: arrowRightPos.left, top: arrowRightPos.top }"
          @click="moveDron(1, 0)"
     />
-    <div v-if="(dronCellPosition.left > 0) && canMoveTo(-1, 0)" class="arrow arrow-left"
-         :style="{ left: arrowLeftPos.left, top: arrowLeftPos.top }"
+    <div v-if="canIMove('left') && dronCellPosition && (dronCellPosition.left > 0) && canMoveTo(-1, 0)"
+         class="arrow arrow-left" :style="{ left: arrowLeftPos.left, top: arrowLeftPos.top }"
          @click="moveDron(-1, 0)"
     />
-    <div v-if="(dronCellPosition.top < 3) && canMoveTo(0, 1)" class="arrow arrow-bottom"
-         :style="{ left: arrowBottomPos.left, top: arrowBottomPos.top }"
+    <div v-if="canIMove('bottom') && dronCellPosition && (dronCellPosition.top < 3) && canMoveTo(0, 1)"
+         class="arrow arrow-bottom" :style="{ left: arrowBottomPos.left, top: arrowBottomPos.top }"
          @click="moveDron(0,1)"
     />
   </div>
@@ -134,6 +135,11 @@
 
 </style>
 <script>
+import firebaseUtil from '@/lib/firebase-util';
+import { isAdmin } from '@/lib/is-admin';
+import { getNumberPlayers } from '@/lib/get-number-players';
+import { getPlayerNumber } from '@/lib/get-player-number';
+
 const aCell = (x,y) => ({x, y});
 const COLISSION_CELLS = [
     aCell(2, 0),
@@ -147,17 +153,36 @@ const COLISSION_CELLS = [
 ];
 const byCell = (x,y) => n => n.x === x && n.y === y;
 
+const BLANK_DRON_CELL_POSITION = {
+  top: 0,
+  left: 0,
+};
+
+const WHO_CAN_MOVE = {
+  'when2players' : {
+    'up': [1],
+    'left': [1],
+    'right': [2],
+    'bottom': [2],
+  },
+  'when3players' : {
+    'up': [1],
+    'left': [2],
+    'right': [3],
+    'bottom': [1,2,3],
+  }
+}
 export default {
   name: 'DronCameraGame',
   data() {
     return {
       publicPath: process.env.BASE_URL,
       fieldImageClientRect: null,
-      dronCellPosition: {
-        top: 0,
-        left: 0,
-      },
+      dronCellPosition: null,
     };
+  },
+  firestore: {
+    dronCellPosition: firebaseUtil.doc('/dron-camera-game/position')
   },
   computed: {
     holeLeft() {
@@ -167,21 +192,24 @@ export default {
       return this.fieldImageClientRect ? this.fieldImageClientRect.top + 'px' : '0px';
     },
     borderLeft() {
-      return this.dronCellPosition.left * 127 + 'px solid black';
+      return this.dronCellPosition ? this.dronCellPosition.left * 127 + 'px solid black' : '0px';
     },
     borderRight() {
-      return (8-this.dronCellPosition.left) * 127 + 'px solid black';
+      return this.dronCellPosition ? (8-this.dronCellPosition.left) * 127 + 'px solid black' : '0px';
     },
     borderTop() {
-      return (this.dronCellPosition.top) * 127 + 'px solid black';
+      return this.dronCellPosition ? (this.dronCellPosition.top) * 127 + 'px solid black' : '0px';
     },
     borderBottom() {
-      return (4-this.dronCellPosition.top) * 127 + 'px solid black';
+      console.log(this.dronCellPosition);
+      return this.dronCellPosition ? (4-this.dronCellPosition.top) * 127 + 'px solid black' : '0px';
     },
     holePosition() {
       return {
-        left: this.fieldImageClientRect ? this.fieldImageClientRect.left + this.dronCellPosition.left * 127 : 0,
-        top: this.fieldImageClientRect ? this.fieldImageClientRect.top + this.dronCellPosition.top * 127 : 0,
+        left: this.dronCellPosition && this.fieldImageClientRect ?
+            this.fieldImageClientRect.left + this.dronCellPosition.left * 127 : 0,
+        top: this.dronCellPosition && this.fieldImageClientRect ?
+            this.fieldImageClientRect.top + this.dronCellPosition.top * 127 : 0,
       }
     },
     arrowRightPos() {
@@ -209,11 +237,19 @@ export default {
       }
     },
   },
+  watch: {
+    dronCellPosition() {
+      console.log('changed dron cell', this.dronCellPosition);
+      if (isAdmin() && this.dronCellPosition === null) {
+        this.$firestoreRefs.dronCellPosition.set(BLANK_DRON_CELL_POSITION);
+      }
+    }
+  },
   created() {
-  window.addEventListener("resize", this.recalculateClientRect);
+    window.addEventListener("resize", this.recalculateClientRect);
   },
   destroyed() {
-  window.removeEventListener("resize", this.recalculateClientRect);
+    window.removeEventListener("resize", this.recalculateClientRect);
   },
   methods: {
     getDronImage() {
@@ -230,13 +266,22 @@ export default {
           document.getElementById('fieldImage').getBoundingClientRect() : null;
     },
     moveDron(leftDiff, topDiff) {
-      this.dronCellPosition.left = this.dronCellPosition.left + leftDiff;
-      this.dronCellPosition.top = this.dronCellPosition.top + topDiff;
+      const left = this.dronCellPosition.left + leftDiff;
+      const top = this.dronCellPosition.top + topDiff;
+      this.$firestoreRefs.dronCellPosition.set({ top, left});
     },
     canMoveTo(x, y) {
+      if (!this.dronCellPosition) {
+        return false;
+      }
       return COLISSION_CELLS
           .filter(byCell(this.dronCellPosition.left + x, this.dronCellPosition.top + y))
           .length === 0;
+    },
+    canIMove(where) {
+      if (isAdmin()) return true;
+      const allowedPlayers = WHO_CAN_MOVE[`when${getNumberPlayers()}players`][where];
+      return allowedPlayers.indexOf(getPlayerNumber()) >= 0;
     },
   },
 };
