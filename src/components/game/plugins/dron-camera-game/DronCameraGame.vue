@@ -295,7 +295,6 @@ export default {
           .length === 0;
     },
     canIMove(where) {
-      return true;
       if (isAdmin()) return true;
       const allowedPlayers = WHO_CAN_MOVE[`when${getNumberPlayers()}players`][where];
       return allowedPlayers.indexOf(getPlayerNumber()) >= 0;
