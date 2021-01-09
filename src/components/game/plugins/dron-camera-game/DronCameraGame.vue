@@ -6,25 +6,36 @@
     </div>
 
     <div class="hole" :style="{
+      width: holeWidth + 'px', height: holeHeight + 'px',
       left: holeLeft, top: holeTop,
       borderLeft: borderLeft, borderTop: borderTop, borderRight: borderRight, borderBottom: borderBottom}"
     >
-      <img class="dron" :src="getDronImage()" width="40px" height="auto" alt="dron" />
+      <img class="dron" :src="getDronImage()" width="40px" height="auto" alt="dron"
+           :style="{ width: holeWidth / 3 + 'px', height: holeHeight / 3 + 'px'}"
+      />
     </div>
     <div v-if="canIMove('up') && dronCellPosition && (dronCellPosition.top > 0) && canMoveTo(0, -1)"
-         class="arrow arrow-up" :style="{ left: arrowUpPos.left, top: arrowUpPos.top }"
+         class="arrow arrow-up"
+         :style="{ left: arrowUpPos.left, top: arrowUpPos.top,
+                   width: holeWidth + 'px', height: holeHeight + 'px', }"
          @click="moveDron(0,-1)"
     />
     <div v-if="canIMove('right') && dronCellPosition && (dronCellPosition.left < 7) && canMoveTo(1, 0)"
-         class="arrow arrow-right" :style="{ left: arrowRightPos.left, top: arrowRightPos.top }"
+         class="arrow arrow-right"
+         :style="{ left: arrowRightPos.left, top: arrowRightPos.top,
+                   width: holeWidth + 'px', height: holeHeight + 'px', }"
          @click="moveDron(1, 0)"
     />
     <div v-if="canIMove('left') && dronCellPosition && (dronCellPosition.left > 0) && canMoveTo(-1, 0)"
-         class="arrow arrow-left" :style="{ left: arrowLeftPos.left, top: arrowLeftPos.top }"
+         class="arrow arrow-left"
+         :style="{ left: arrowLeftPos.left, top: arrowLeftPos.top,
+                   width: holeWidth + 'px', height: holeHeight + 'px', }"
          @click="moveDron(-1, 0)"
     />
     <div v-if="canIMove('bottom') && dronCellPosition && (dronCellPosition.top < 3) && canMoveTo(0, 1)"
-         class="arrow arrow-bottom" :style="{ left: arrowBottomPos.left, top: arrowBottomPos.top }"
+         class="arrow arrow-bottom"
+         :style="{ left: arrowBottomPos.left, top: arrowBottomPos.top,
+                   width: holeWidth + 'px', height: holeHeight + 'px', }"
          @click="moveDron(0,1)"
     />
   </div>
@@ -58,8 +69,6 @@
 
 .hole {
   position: fixed;
-  height: 125px;
-  width: 125px;
 }
 
 .dron {
@@ -73,6 +82,7 @@
   height: 125px;
   cursor: pointer;
   animation: blink 1.33s ease-out infinite;
+  background-size: cover;
 }
 .arrow:hover {
   animation: none;
@@ -185,6 +195,13 @@ export default {
     dronCellPosition: firebaseUtil.doc('/dron-camera-game/position')
   },
   computed: {
+    holeWidth() {
+      console.log(this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.width / 8) : 'kk');
+      return this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.width / 8): 0;
+    },
+    holeHeight() {
+      return this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.height / 4): 0;
+    },
     holeLeft() {
       return this.fieldImageClientRect ? this.fieldImageClientRect.left + 'px' : '0px';
     },
@@ -192,54 +209,53 @@ export default {
       return this.fieldImageClientRect ? this.fieldImageClientRect.top + 'px' : '0px';
     },
     borderLeft() {
-      return this.dronCellPosition ? this.dronCellPosition.left * 127 + 'px solid black' : '0px';
+      return this.dronCellPosition ? this.dronCellPosition.left * this.holeWidth + 'px solid black' : '0px';
     },
     borderRight() {
-      return this.dronCellPosition ? (8-this.dronCellPosition.left) * 127 + 'px solid black' : '0px';
+      return this.dronCellPosition ? (8-this.dronCellPosition.left) * this.holeWidth + 'px solid black' : '0px';
     },
     borderTop() {
-      return this.dronCellPosition ? (this.dronCellPosition.top) * 127 + 'px solid black' : '0px';
+      return this.dronCellPosition ? (this.dronCellPosition.top) * this.holeHeight + 'px solid black' : '0px';
     },
     borderBottom() {
       console.log(this.dronCellPosition);
-      return this.dronCellPosition ? (4-this.dronCellPosition.top) * 127 + 'px solid black' : '0px';
+      return this.dronCellPosition ? (4-this.dronCellPosition.top) * this.holeHeight + 'px solid black' : '0px';
     },
     holePosition() {
       return {
         left: this.dronCellPosition && this.fieldImageClientRect ?
-            this.fieldImageClientRect.left + this.dronCellPosition.left * 127 : 0,
+            this.fieldImageClientRect.left + this.dronCellPosition.left * this.holeWidth : 0,
         top: this.dronCellPosition && this.fieldImageClientRect ?
-            this.fieldImageClientRect.top + this.dronCellPosition.top * 127 : 0,
+            this.fieldImageClientRect.top + this.dronCellPosition.top * this.holeHeight : 0,
       }
     },
     arrowRightPos() {
       return {
-        left: (127 + this.holePosition.left) + 'px',
+        left: (this.holeWidth + this.holePosition.left) + 'px',
         top: this.holePosition.top + 'px',
       }
     },
     arrowUpPos() {
       return {
         left: (this.holePosition.left) + 'px',
-        top: -127 + this.holePosition.top + 'px',
+        top: -this.holeHeight + this.holePosition.top + 'px',
       }
     },
     arrowLeftPos() {
       return {
-        left: (- 127 + this.holePosition.left) + 'px',
+        left: (-this.holeWidth + this.holePosition.left) + 'px',
         top: this.holePosition.top + 'px',
       }
     },
     arrowBottomPos() {
       return {
         left: (this.holePosition.left) + 'px',
-        top: 127 + this.holePosition.top + 'px',
+        top: this.holeHeight + this.holePosition.top + 'px',
       }
     },
   },
   watch: {
     dronCellPosition() {
-      console.log('changed dron cell', this.dronCellPosition);
       if (isAdmin() && this.dronCellPosition === null) {
         this.$firestoreRefs.dronCellPosition.set(BLANK_DRON_CELL_POSITION);
       }
@@ -279,6 +295,7 @@ export default {
           .length === 0;
     },
     canIMove(where) {
+      return true;
       if (isAdmin()) return true;
       const allowedPlayers = WHO_CAN_MOVE[`when${getNumberPlayers()}players`][where];
       return allowedPlayers.indexOf(getPlayerNumber()) >= 0;
