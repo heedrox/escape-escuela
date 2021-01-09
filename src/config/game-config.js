@@ -6,6 +6,7 @@ import PuzzleRoom8RotatingImages from '@/components/game/plugins/puzzle-room-8/P
 import { getPlayerNumber } from '@/lib/get-player-number';
 import { isAdmin } from '@/lib/is-admin';
 import playerCodes from './player-codes';
+import DronCameraGame from '@/components/game/plugins/dron-camera-game/DronCameraGame';
 
 const anItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: false });
@@ -37,7 +38,7 @@ export default {
   codes: [
     '0000', //to test
 
-    'MORID', //room2 - parte 1
+    '5834', //lockbox - las letras has de contar - hasta infinito mas alla3
     'HUMAN', //room2 - parte 2
     'OSHOY', //room2 - parte 3
 
@@ -67,13 +68,16 @@ export default {
 
     anItem(401, 4, 'room-jail.jpg'),
     anItem(402, 4, 'lockbox-con-candado.jpg'),
-    aPluginItem(403, 4, 'numbers-game.jpg', NumbersGame),
-    aDifferentItem(404, 4, 'tooche-pista-3.jpg', 'tooche-pista-3b.jpg', byNumberDestinataries([2], [1, 2])),
+    anItem(403, 4, 'poster-toystory.jpg'),
+    anItem(404, 4, 'room4-escoba.jpg'),
+    anItem(405, 4, 'carta.jpg'),
+    //falta contenido de la caja
+    anItem(406, 4, 'garfio.jpg'),
+    anItem(407, 4, 'dron.jpg'),
+    anItem(408, 4, 'llave.jpg'),
 
-    anItem(501, 5, 'room-5.jpg'),
-    anItem(502, 5, 'ladrillo-1.jpg'),
-    aDifferentItem(503, 5, 'pista-tooche-1a.jpg', 'pista-tooche-1b.jpg', byNumberDestinataries([1], [1, 3])),
-    anInvisibleItem(504, 5, '030-humanos-pistas.mp3', 'MP3'),
+    anItem(501, 5, 'room.jpg'),
+    aPluginItem(502, 5, 'dron-camera-game.jpg', DronCameraGame),
 
     anItem(601, 6, 'room-6.jpg'),
     anItem(602, 6, 'room-6-constelations.jpg'),

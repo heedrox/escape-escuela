@@ -11,19 +11,22 @@
     <SelectedImageItem v-else :url="url" :item="item" />
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
   .close {
     position: fixed;
     top:8.5vh;
     left: 90vw;
     height: 5vh;
-    width: 5vh;
-    background-color: rgb(13, 6, 182);
+    width: 3vw;
+    background-color: $primary-color;
     color:#fff;
     border-radius: 50%;
     display: inline-block;
-    font-size:5vh;
+    font-size:3vh;
     z-index:2;
+    font-family: 'Arial Black',sans-serif;
+    padding-top:1.5vh;
+    cursor:pointer;
   }
   .zoomed-mask {
     position:fixed;
