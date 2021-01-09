@@ -10,19 +10,19 @@
     >
       <img class="dron" :src="getDronImage()" width="40px" height="auto" alt="dron" />
     </div>
-    <div v-if="dronCellPosition.top > 0" class="arrow arrow-up"
+    <div v-if="(dronCellPosition.top > 0) && canMoveTo(0, -1)" class="arrow arrow-up"
          :style="{ left: arrowUpPos.left, top: arrowUpPos.top }"
          @click="moveDron(0,-1)"
     />
-    <div v-if="dronCellPosition.left < 7" class="arrow arrow-right"
+    <div v-if="(dronCellPosition.left < 7) && canMoveTo(1, 0)" class="arrow arrow-right"
          :style="{ left: arrowRightPos.left, top: arrowRightPos.top }"
          @click="moveDron(1, 0)"
     />
-    <div v-if="dronCellPosition.left > 0" class="arrow arrow-left"
+    <div v-if="(dronCellPosition.left > 0) && canMoveTo(-1, 0)" class="arrow arrow-left"
          :style="{ left: arrowLeftPos.left, top: arrowLeftPos.top }"
          @click="moveDron(-1, 0)"
     />
-    <div v-if="dronCellPosition.top < 3 " class="arrow arrow-bottom"
+    <div v-if="(dronCellPosition.top < 3) && canMoveTo(0, 1)" class="arrow arrow-bottom"
          :style="{ left: arrowBottomPos.left, top: arrowBottomPos.top }"
          @click="moveDron(0,1)"
     />
@@ -134,6 +134,19 @@
 
 </style>
 <script>
+const aCell = (x,y) => ({x, y});
+const COLISSION_CELLS = [
+    aCell(2, 0),
+  aCell(4, 0),
+  aCell(6, 0),
+  aCell(2, 1),
+  aCell(1, 3),
+  aCell(3, 3),
+  aCell(5, 3),
+  aCell(7, 3),
+];
+const byCell = (x,y) => n => n.x === x && n.y === y;
+
 export default {
   name: 'DronCameraGame',
   data() {
@@ -143,7 +156,7 @@ export default {
       dronCellPosition: {
         top: 0,
         left: 0,
-      }
+      },
     };
   },
   computed: {
@@ -206,6 +219,9 @@ export default {
     getDronImage() {
       return `${this.publicPath}game/5/dron-small.png`
     },
+    getDronVentiladorImage() {
+      return `${this.publicPath}game/5/dron-ventilador.png`
+    },
     getUrl() {
       return `${this.publicPath}game/5/room5-numeros.jpg`
     },
@@ -216,11 +232,12 @@ export default {
     moveDron(leftDiff, topDiff) {
       this.dronCellPosition.left = this.dronCellPosition.left + leftDiff;
       this.dronCellPosition.top = this.dronCellPosition.top + topDiff;
-      this.checkDronColission();
     },
-    checkDronColission() {
-
-    }
+    canMoveTo(x, y) {
+      return COLISSION_CELLS
+          .filter(byCell(this.dronCellPosition.left + x, this.dronCellPosition.top + y))
+          .length === 0;
+    },
   },
 };
 </script>
