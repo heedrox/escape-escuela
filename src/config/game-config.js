@@ -86,11 +86,10 @@ export default {
     anItem(605, 6, 'battery.jpg'),
 
 
-    anItem(701, 7, 'room7-entrance.mp4', 'VIDEO'),
-    anItem(702, 7, 'room7.jpg'),
-    anItem(703, 7, 'self-destruct.jpg'),
-    anItem(704, 7, 'room7-instrucciones-1.jpg'),
-    anItem(706, 7, 'monolith-ending.mp4', 'VIDEO'),
+    anItem(801, 8, 'room8-aula.jpg'),
+    anItem(802, 8, 'room8-espejo.jpg'),
+    anItem(803, 8, 'room8-ordenador.jpg'),
+
 
     anItem(802, 8, 'room-8.jpg'),
     aDifferentItemMultiple(803, 8,
