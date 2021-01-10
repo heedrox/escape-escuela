@@ -39,10 +39,10 @@ export default {
     '0000', //to test
 
     '5834', //lockbox - las letras has de contar - hasta infinito mas alla3
-    'HUMAN', //room2 - parte 2
-    'OSHOY', //room2 - parte 3
 
-    '4985', //room6 (stars)
+
+
+    '354', //room6 - closet lock (stars)
 
     'G7B1B5', //room5 (touche)
 
@@ -79,8 +79,12 @@ export default {
     anItem(501, 5, 'room.jpg'),
     aPluginItem(502, 5, 'dron-camera-game.jpg', DronCameraGame),
 
-    anItem(601, 6, 'room-6.jpg'),
-    anItem(602, 6, 'room-6-constelations.jpg'),
+    anItem(601, 6, 'room6-steam.jpg'),
+    anItem(602, 6, 'room6-armario.jpg'),
+    anItem(603, 6, 'room6-tetris-switch.jpg'),
+    anItem(604, 6, 'room6-trampilla.jpg'),
+    anItem(605, 6, 'battery.jpg'),
+
 
     anItem(701, 7, 'room7-entrance.mp4', 'VIDEO'),
     anItem(702, 7, 'room7.jpg'),
