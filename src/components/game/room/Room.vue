@@ -12,9 +12,7 @@
       </div>
     </div>
     <div v-if="!gameState || !gameState.ready" class="waiting">
-      <p>Humanos,</p>
-      <p><br /><br /></p>
-      <p>Demostradnos lo que valéis</p>
+
     </div>
     <SelectedItem v-if="selectedItem"
                   :item="selectedItem"
