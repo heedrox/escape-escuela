@@ -38,12 +38,13 @@ export default {
   codes: [
     '0000', //to test
     '246315', //room2 - book
-    '5834', //room4 - lockbox - las letras has de contar - hasta infinito mas alla3
+    '5834',   //room4 - lockbox - las letras has de contar - hasta infinito mas alla3
 
-    '2443', //room 5 - tetris  box
+    '2443',   //room 5 - tetris box
+    '42387',  //room 5 - dron
+    '354',    //room 6 - closet lock (stars)
 
-    '354', //room6 - closet lock (stars)
-
+    'SECAL', //room 8 - computer password
 
 
     'DBFA', //room 9 - part 1
@@ -76,6 +77,9 @@ export default {
     anItem(503, 5, 'caja1.jpg'),
     anItem(504, 5, 'caja2.jpg'),
     anItem(505, 5, 'caja3.jpg'),
+    aCorruptedItem(506, 5, 'caja1-paper.jpg', [1]),
+    aCorruptedItem(507, 5, 'caja2-paper.jpg', [2]),
+    aCorruptedItem(508, 5, 'caja3-paper.jpg', [3]),
 
     anItem(601, 6, 'room6-steam.jpg'),
     anItem(602, 6, 'room6-armario.jpg'),
