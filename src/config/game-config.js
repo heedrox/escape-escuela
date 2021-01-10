@@ -77,9 +77,9 @@ export default {
     anItem(503, 5, 'caja1.jpg'),
     anItem(504, 5, 'caja2.jpg'),
     anItem(505, 5, 'caja3.jpg'),
-    aCorruptedItem(506, 5, 'caja1-paper.jpg', [1]),
-    aCorruptedItem(507, 5, 'caja2-paper.jpg', [2]),
-    aCorruptedItem(508, 5, 'caja3-paper.jpg', [3]),
+    aCorruptedItem(506, 5, 'caja1-paper.jpg', byNumberDestinataries([1], [1])),
+    aCorruptedItem(507, 5, 'caja2-paper.jpg', byNumberDestinataries([2], [2])),
+    aCorruptedItem(508, 5, 'caja3-paper.jpg', byNumberDestinataries([3], [3])),
 
     anItem(601, 6, 'room6-steam.jpg'),
     anItem(602, 6, 'room6-armario.jpg'),

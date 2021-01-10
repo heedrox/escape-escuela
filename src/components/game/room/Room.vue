@@ -12,7 +12,6 @@
       </div>
     </div>
     <div v-if="!gameState || !gameState.ready" class="waiting">
-
     </div>
     <SelectedItem v-if="selectedItem"
                   :item="selectedItem"
