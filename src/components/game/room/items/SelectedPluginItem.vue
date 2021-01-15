@@ -1,10 +1,10 @@
 <template>
   <div class="zoomed-item box" @click.stop="">
     <span class="helper"></span>
-    <component :is="item.pluginVue" :key="item.id" class="the-plugin"></component>
+    <component :is="item.pluginVue" :key="item.id" v-bind="item.args" class="the-plugin"></component>
   </div>
 </template>
-<style scoped type="scss">
+<style scoped lang="scss">
   .zoomed-item {
     position: fixed;
     top: 10vh;

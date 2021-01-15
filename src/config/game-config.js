@@ -7,6 +7,7 @@ import { getPlayerNumber } from '@/lib/get-player-number';
 import { isAdmin } from '@/lib/is-admin';
 import playerCodes from './player-codes';
 import DronCameraGame from '@/components/game/plugins/dron-camera-game/DronCameraGame';
+import PizarraHint from '@/components/game/plugins/pizarra-hint/PizarraHint';
 
 const anItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: false });
@@ -22,11 +23,21 @@ const aDifferentItem = (id, roomId, imageA, imageB, destinataries) =>
 const aDifferentItemMultiple = (id, roomId, images) =>
   ({ id, roomId, images, differentMultiple: true });
 const anImageFor = (image, whoSees) => ({ image, whoSees });
-const aPluginItem = (id, roomId, image, pluginVue) =>
-  ({ id, roomId, image, pluginVue, plugin: true });
+const aPluginItem = (id, roomId, image, pluginVue, args) =>
+  ({ id, roomId, image, pluginVue, args, plugin: true });
 const byNumberDestinataries = (ifTwo, ifThree) => ({ ifTwo, ifThree });
 
 const when2 = (resIf2, resIf3) => (getNumberPlayers() === 2 ? resIf2 : resIf3);
+
+const ROOM_2_PIZARRA_ARGS = { image: 'game/2/pizarra-hint-3.jpg', left: 50, top: 20,
+  fontSize: 4, text: 'CORRED' };
+
+const ROOM_6_PIZARRA_ARGS = { image: 'game/6/pizarra-hint-1.jpg', left: 15, top: 33,
+  fontSize: 6, text: 'EL TIEMPO SE AGOTA' };
+
+const ROOM_8_PIZARRA_ARGS = { image: 'game/8/pizarra-hint-2.jpg', left: 12, top: 37,
+  fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA' };
+
 
 export default {
   defaultActiveRoom: 4,
@@ -37,10 +48,11 @@ export default {
   embedVideoconference: false,
   codes: [
     '0000', //to test
-    '246315', //room2 - book
+
     '5834',   //room4 - lockbox - las letras has de contar - hasta infinito mas alla3
 
     '2443',   //room 5 - tetris box
+    '246315', //room 5 - book
     '42387',  //room 5 - dron
     '354',    //room 6 - closet lock (stars)
 
@@ -60,6 +72,7 @@ export default {
     anItem(201, 2, 'room2.jpg'),
     anItem(202, 2, 'library.jpg'),
     anItem(203, 2, 'room2-book.jpg'),
+    aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, ROOM_2_PIZARRA_ARGS),
 
 
     anItem(401, 4, 'room-jail.jpg'),
@@ -87,7 +100,7 @@ export default {
     anItem(604, 6, 'room6-trampilla.jpg'),
     anItem(605, 6, 'battery.jpg'),
     anItem(606, 6, 'room6-enchufe.jpg'),
-
+    aPluginItem(607, 6, 'pizarra-hint-1.jpg', PizarraHint, ROOM_6_PIZARRA_ARGS),
 
     anItem(801, 8, 'room8-aula.jpg'),
     anItem(802, 8, 'room8-espejo.jpg'),
@@ -95,7 +108,7 @@ export default {
     anItem(804, 8, 'tetris-solution.jpg'),
     anItem(805, 8, 'room8-ordenador-password.jpg'),
     anItem(806, 8, 'room8-monitor-password-entered.jpg'),
-
+    aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, ROOM_8_PIZARRA_ARGS),
 
 
   ]

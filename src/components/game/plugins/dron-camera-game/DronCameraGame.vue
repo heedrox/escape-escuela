@@ -40,7 +40,7 @@
     />
   </div>
 </template>
-<style scoped type="scss">
+<style scoped lang="scss">
 .zoomed-item {
   position: fixed;
   top: 10vh;
@@ -196,7 +196,6 @@ export default {
   },
   computed: {
     holeWidth() {
-      console.log(this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.width / 8) : 'kk');
       return this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.width / 8): 0;
     },
     holeHeight() {
