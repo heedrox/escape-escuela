@@ -29,14 +29,16 @@ const byNumberDestinataries = (ifTwo, ifThree) => ({ ifTwo, ifThree });
 
 const when2 = (resIf2, resIf3) => (getNumberPlayers() === 2 ? resIf2 : resIf3);
 
-const ROOM_2_PIZARRA_ARGS = { image: 'game/2/pizarra-hint-3.jpg', left: 50, top: 20,
-  fontSize: 4, text: 'CORRED' };
+const EVIL_NAME = 'CHISPIS';
+
+const ROOM_2_PIZARRA_ARGS = { image: 'game/2/pizarra-hint-3.jpg', left: 55, top: 35,
+  fontSize: 7, text: 'HUID', evilName: EVIL_NAME };
 
 const ROOM_6_PIZARRA_ARGS = { image: 'game/6/pizarra-hint-1.jpg', left: 15, top: 33,
-  fontSize: 6, text: 'EL TIEMPO SE AGOTA' };
+  fontSize: 6, text: 'EL TIEMPO SE AGOTA', evilName: EVIL_NAME };
 
 const ROOM_8_PIZARRA_ARGS = { image: 'game/8/pizarra-hint-2.jpg', left: 12, top: 37,
-  fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA' };
+  fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA', evilName: EVIL_NAME };
 
 
 export default {
@@ -59,10 +61,7 @@ export default {
     'SECAL', //room 8 - computer password
 
 
-    'DBFA', //room 9 - part 1
-    'KNMI', //room 9 - part 2
-    'XTRU', //room 9 - part 3
-    'DBFAKNMIXTRU', //room 9 - all , just in case they try like this also
+    EVIL_NAME, //room 8 - mirror CHISPIS
 
     'C', //room 8 puzzle easy
     'CANE', //room 8

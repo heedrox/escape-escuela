@@ -4,7 +4,10 @@
       <span class="helper"></span>
       <img id="fieldImage" alt="pizarra hint" :src="getUrl()" @load="recalculateClientRect()" />
       <div :style="textStyle" class="theHintText">
-        <span v-for="(idx,i) in letters" :key="i">{{ idx }}</span>
+        <span v-for="(ltr,idx) in letters" :key="idx">
+          <span v-if="isOrdinaryLetter(ltr)">{{ ltr }}</span>
+          <img v-else :style="imgCharStyle" class="evilChar" :src="getLetterSrc(ltr)" :alt="ltr" />
+        </span>
       </div>
     </div>
   </div>
@@ -38,8 +41,14 @@
 
 .theHintText {
   position: fixed;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   font-family: 'PrimaryFontFamily',serif;
+}
+
+.evilChar {
+  border-bottom-color:#fff;
+  border-bottom-width:0.5vh;
+  border-bottom-style: dotted;
 }
 </style>
 <script>
@@ -65,6 +74,10 @@ export default {
     fontSize: {
       type: Number,
       default: 4,
+    },
+    evilName: {
+      type: String,
+      default: '',
     }
   },
   data() {
@@ -87,6 +100,13 @@ export default {
             '12px',
       };
     },
+    imgCharStyle() {
+      return {
+        width: this.fieldImageClientRect ?
+            Math.round(this.fieldImageClientRect.width * this.fontSize * 0.75 / 100) + 'px' :
+            '12px',
+      };
+    },
     letters() {
       console.log('current text', this.text);
       return this.text.split('');
@@ -105,6 +125,13 @@ export default {
     recalculateClientRect() {
       this.fieldImageClientRect = document.getElementById('fieldImage') ?
           document.getElementById('fieldImage').getBoundingClientRect() : null;
+    },
+    isOrdinaryLetter(ltr) {
+      return this.evilName.toUpperCase().indexOf(ltr.toUpperCase()) === -1;
+    },
+    getLetterSrc(ltr) {
+      console.log('get letter', ltr);
+      return `${this.publicPath}game/evil-letters/letra-${ltr}.png`
     },
   },
 };
