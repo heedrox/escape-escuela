@@ -114,9 +114,11 @@ export default {
     },
     selectImage(item) {
       this.selectedItem = item;
+      this.sendSelectedEvent();
     },
     hideImage() {
       this.selectedItem = null;
+      this.sendUnselectedEvent();
     },
     isUnlocked(itemId) {
       return this.gameState.unlockedItems.indexOf(itemId) >= 0;
@@ -127,7 +129,15 @@ export default {
       if (this.gameState.unlockedItems.indexOf(this.selectedItem.id) === -1) {
         this.selectedItem = null;
       }
-    }
+    },
+    sendSelectedEvent() {
+      const event = new CustomEvent('selected-item');
+      window.document.dispatchEvent(event);
+    },
+    sendUnselectedEvent() {
+      const event = new CustomEvent('unselected-item');
+      window.document.dispatchEvent(event);
+    },
   },
 }
 </script>

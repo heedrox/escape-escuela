@@ -64,6 +64,7 @@ export default {
     'MUERTEYODESTRUCTOR', //room 7- final 18 letter passcode
   ],
   fullScreenPlugins: [
+    Whiteboard,
     MovingWizard
   ],
   items: [
