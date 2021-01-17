@@ -95,7 +95,6 @@ export default {
       const pluginsEnabled = addPlugin(
           this.gameState && this.gameState.pluginsEnabled ? this.gameState.pluginsEnabled : [],
           plugin.name);
-      console.log(pluginsEnabled);
       if (isAdmin()) {
         setTimeout(() => {
           //Super hack: update gamestate after 1 secs so it does not change, and does not interpret a new action again
@@ -108,7 +107,6 @@ export default {
       const pluginsEnabled = removePlugin(
           this.gameState && this.gameState.pluginsEnabled ? this.gameState.pluginsEnabled : [],
           plugin.name);
-      console.log(pluginsEnabled);
       if (isAdmin()) {
         setTimeout(() => {
           //Super hack: update gamestate after 1 secs so it does not change, and does not interpret a new action again
