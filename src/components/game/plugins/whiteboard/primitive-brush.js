@@ -11,10 +11,36 @@ const makePoint = (event) => {
 export default class PrimitiveBrush {
 
   constructor(canvas) {
-
     this.canvas = canvas;
+    this.endCallback = null;
+  }
 
-    const context = canvas.getContext('2d');
+  attach(endCallback) {
+    this.initContext();
+    this.canvas.addEventListener('mousedown', this.start.bind(this));
+    this.canvas.addEventListener('mousemove', this.move.bind(this));
+    this.canvas.addEventListener('mouseup', this.end.bind(this));
+    this.canvas.addEventListener("touchstart", this.touchHandler.bind(this), true);
+    this.canvas.addEventListener("touchmove", this.touchHandler.bind(this), true);
+    this.canvas.addEventListener("touchend", this.touchHandler.bind(this), true);
+    this.canvas.addEventListener("touchcancel", this.touchHandler.bind(this), true);
+    this.endCallback = endCallback;
+  }
+
+  dettach() {
+    if (!this.canvas) return;
+    this.canvas.removeEventListener('mousedown', this.start.bind(this));
+    this.canvas.removeEventListener('mousemove', this.move.bind(this));
+    this.canvas.removeEventListener('mouseup', this.end.bind(this));
+    this.canvas.removeEventListener("touchstart", this.touchHandler.bind(this), true);
+    this.canvas.removeEventListener("touchmove", this.touchHandler.bind(this), true);
+    this.canvas.removeEventListener("touchend", this.touchHandler.bind(this), true);
+    this.canvas.removeEventListener("touchcancel", this.touchHandler.bind(this), true);
+
+  }
+
+  initContext() {
+    const context = this.canvas.getContext('2d');
 
     if (!(context instanceof CanvasRenderingContext2D)) {
       throw new Error('No 2D rendering context given!');
@@ -32,19 +58,10 @@ export default class PrimitiveBrush {
     this.ctx.shadowOffsetX = 0;
     this.ctx.shadowOffsetY = 0;
     this.ctx.shadowBlur = 20;
-    this.endCallback = null;
-  }
-
-  attach(endCallback) {
-    this.canvas.addEventListener('mousedown', this.start.bind(this));
-    this.canvas.addEventListener('mousemove', this.move.bind(this));
-    this.canvas.addEventListener('mouseup', this.end.bind(this));
-    this.endCallback = endCallback;
   }
 
   clear() {
     const { width, height } = this.canvas.getBoundingClientRect();
-    console.log({ width, height});
     this.ctx.clearRect(0, 0, width, height);
   }
 
@@ -78,5 +95,29 @@ export default class PrimitiveBrush {
     }
 
     this.ctx.stroke();
+  }
+
+  touchHandler(event) {
+    const firstTouch = event.changedTouches[0];
+
+    const type = this.getMouseEventByTouchType(event.type);
+
+    const simulatedEvent = document.createEvent("MouseEvent");
+    simulatedEvent.initMouseEvent(type, true, true, window, 1,
+      firstTouch.screenX, firstTouch.screenY,
+      firstTouch.clientX, firstTouch.clientY, false,
+      false, false, false, 0/*left*/, null);
+
+    firstTouch.target.dispatchEvent(simulatedEvent);
+  }
+
+  getMouseEventByTouchType(type) {
+    switch(type)
+    {
+      case "touchstart": return "mousedown";
+      case "touchmove":  return "mousemove";
+      case "touchend":   return "mouseup";
+      default: return;
+    }
   }
 }

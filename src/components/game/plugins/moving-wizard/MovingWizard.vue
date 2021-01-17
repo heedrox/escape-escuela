@@ -1,10 +1,13 @@
 <template>
   <div>
     <img id="theWizard" :src="wizardUrl()" alt="the wizard" :style="wizardStyle" @click="clickWizard">
-    <div v-if="isAdmin()" class="throwSpellBtn" @click="adminThrowSpell">
-      <button>
+    <div v-if="isAdmin()" class="adminControlSpell">
+      <button @click="adminThrowSpell">
         LANZAR HECHIZO
       </button>
+      {{ player0strokes }} -
+      {{ player1strokes }} -
+      {{ player2strokes }} -
     </div>
     <div v-if="gameState.activeSpell" class="activeSpell">
       <img :src="activeSpellUrl" alt="the-spell" class="activeSpell" :style="spellStyle" @click="clickWizard" />
@@ -30,7 +33,7 @@
   max-height: 20vh;
   animation: spell 1s infinite alternate, fadein 1s ease-in;
 }
-.throwSpellBtn {
+.adminControlSpell {
   position: fixed;
   top: 0vh;
   left: 0vw;
@@ -89,7 +92,9 @@ export default {
         horizontal: 1,
         vertical: 1,
       },
-      gameState: { activeSpell: 0 }, //indexed by 1, 0 = no active
+      gameState: {
+        activeSpell: 0, //indexed by 1, 0 = no active
+        spellplayer0: [], spellplayer1: [], spellplayer2: [] },
     }
   },
   firestore: {
@@ -111,7 +116,16 @@ export default {
         top: (this.wizardPosition.top + 2) + 'vh',
         left: (this.wizardPosition.left + 1) + 'vw',
       };
-    }
+    },
+    player0strokes() {
+      return this.gameState.spellplayer0 ? this.gameState.spellplayer0.length : 0 ;
+    },
+    player1strokes() {
+      return this.gameState.spellplayer1 ? this.gameState.spellplayer1.length : 0 ;
+    },
+    player2strokes() {
+      return this.gameState.spellplayer2 ? this.gameState.spellplayer2.length : 0 ;
+    },
   },
   mounted() {
     this.timerInterval = setInterval(() => {

@@ -15,32 +15,12 @@
 }
 
 #whiteboardCanvas {
-  border:1px solid gray;
+  border: 0;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
   cursor: url('/whiteboard/wand.png'), auto;
-}
-
-#toolbar {
-  position: absolute;
-  top: 0;
-  width: 33vw;
-  z-index: 4;
-  margin: 1px;
-  padding: 3px;
-  background-color: #e2e2e2;
-  box-sizing: border-box;
-}
-
-#toolbar img {
-  height: 32px;
-  width: 32px;
-}
-
-#theBrush {
-  display: none;
 }
 </style>
 <script>
@@ -57,6 +37,9 @@ export default {
       hidden: false,
       primitiveBrush: null,
     }
+  },
+  firestore: {
+    gameState: firebaseUtil.doc('/')
   },
   created() {
     window.addEventListener("resize", this.restartCanvas);
@@ -85,11 +68,12 @@ export default {
       this.hidden = false;
     },
     initWhiteboard() {
+      this.primitiveBrush = new PrimitiveBrush(document.getElementById('whiteboardCanvas'));
       this.restartCanvas();
     },
     restartCanvas() {
       this.resizeCanvas();
-      this.initPrimitiveBrush();
+      this.reattach();
     },
     resizeCanvas() {
       const size = {
@@ -98,11 +82,15 @@ export default {
       };
       document.getElementById('whiteboardCanvas').width = Math.floor(size.width * 0.33);
       document.getElementById('whiteboardCanvas').height = Math.floor(size.height * 0.37);
-
     },
-    initPrimitiveBrush() {
-      this.primitiveBrush = new PrimitiveBrush(document.getElementById('whiteboardCanvas'));
-      this.primitiveBrush.attach();
+    reattach() {
+      if (this.primitiveBrush) this.primitiveBrush.dettach();
+      this.primitiveBrush.attach((strokes) => this.sendStrokes(strokes));
+    },
+    sendStrokes: function (strokes) {
+      let updatedObj = {};
+      updatedObj[`spellplayer${this.getPlayerNumber()}`] = strokes;
+      this.$firestoreRefs.gameState.update( updatedObj );
     }
   }
 }
