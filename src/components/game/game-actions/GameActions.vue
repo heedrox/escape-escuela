@@ -1,8 +1,18 @@
 <template>
   <div v-if="isAdmin()">
-    <button @click="doGlitch()">
-      Glitch
+    <select v-model="selectedPlugin">
+      <option selected></option>
+      <option v-for="(plugin,idx) in plugins" :key="`plugin-${idx}`" :value="plugin">
+        {{ plugin.name }}
+      </option>
+    </select>
+    <button @click="showPlugin()">
+      SHOW PLUGIN
     </button>
+    <button @click="hidePlugin()">
+      HIDE PLUGIN
+    </button>
+    &nbsp;
     <select v-model="selectedAudio">
       <option selected></option>
       <option v-for="audio in audios" :key="audio.image" :value="audio">
@@ -27,10 +37,12 @@ import gameActions from './lib/game-actions-lib';
 
 export default {
   name: 'GameActions',
+  emits: [ 'show-plugin', 'hide-plugin' ],
   data() {
     return {
       gameState: {},
       selectedAudio: '',
+      selectedPlugin: '',
       publicPath: process.env.BASE_URL,
     };
   },
@@ -41,16 +53,22 @@ export default {
     audios() {
       return gameConfig.items.filter(gc => gc.type === 'MP3');
     },
+    plugins() {
+      return gameConfig.fullScreenPlugins;
+    }
   },
   watch: {
     gameState() {
       if (!this.gameState.action) return;
       console.log('ACTION RECEIVED', this.gameState.action);
-      if (isAdmin()) {
+
+      if (this.gameState.action.id === 'SHOWPLUGIN') {
+        this.$emit('show-plugin', { name: this.gameState.action.argId });
+      } else if (this.gameState.action.id === 'HIDEPLUGIN') {
+        this.$emit('hide-plugin', { name: this.gameState.action.argId });
+      } else if (isAdmin()) {
         console.log('ignoring as Im admin');
-        return;
-      }
-      if ((this.gameState.action.id === 'GLITCH')) {
+      } else  if ((this.gameState.action.id === 'GLITCH')) {
         glitchAction();
       } else if ((this.gameState.action.id === 'AUDIO')) {
         audioAction(this.publicPath, this.gameState.action.argId);
@@ -58,6 +76,16 @@ export default {
     }
   },
   methods: {
+    showPlugin() {
+      if (window.confirm('Mostramos el plugin, ¿qué tal está yendo?')) {
+        gameActions.send(this.$firestoreRefs.gameState, { id: 'SHOWPLUGIN', argId: this.selectedPlugin.name })
+      }
+    },
+    hidePlugin() {
+      if (window.confirm('Ocultamos el plugin')) {
+        gameActions.send(this.$firestoreRefs.gameState, { id: 'HIDEPLUGIN', argId: this.selectedPlugin.name })
+      }
+    },
     doGlitch() {
       gameActions.send(this.$firestoreRefs.gameState, { id: 'GLITCH'})
     },

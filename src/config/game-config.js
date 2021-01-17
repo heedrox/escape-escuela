@@ -1,13 +1,9 @@
-import NumbersGame from '@/components/game/plugins/numbers-game/NumbersGame';
-import MasterMind from '@/components/game/plugins/master-mind/MasterMind';
 import { getNumberPlayers } from '@/lib/get-number-players';
 import Whiteboard from '@/components/game/plugins/whiteboard/Whiteboard';
-import PuzzleRoom8RotatingImages from '@/components/game/plugins/puzzle-room-8/PuzzleRoom8RotatingImages';
-import { getPlayerNumber } from '@/lib/get-player-number';
-import { isAdmin } from '@/lib/is-admin';
 import playerCodes from './player-codes';
 import DronCameraGame from '@/components/game/plugins/dron-camera-game/DronCameraGame';
 import PizarraHint from '@/components/game/plugins/pizarra-hint/PizarraHint';
+import MovingWizard from '@/components/game/plugins/moving-wizard/MovingWizard';
 
 const anItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: false });
@@ -67,12 +63,19 @@ export default {
     'CANE', //room 8
     'MUERTEYODESTRUCTOR', //room 7- final 18 letter passcode
   ],
+  fullScreenPlugins: [
+    MovingWizard
+  ],
   items: [
     anItem(201, 2, 'room2.jpg'),
     anItem(202, 2, 'library.jpg'),
     anItem(203, 2, 'room2-book.jpg'),
     aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, ROOM_2_PIZARRA_ARGS),
-
+    aDifferentItemMultiple(205, 2, [
+      anImageFor('magia-negra-spells-1.jpg', [1]),
+      anImageFor('magia-negra-spells-2.jpg', [2]),
+      anImageFor('magia-negra-spells-3.jpg', [3])
+    ]),
 
     anItem(401, 4, 'room-jail.jpg'),
     anItem(402, 4, 'lockbox-con-candado.jpg'),
@@ -100,6 +103,14 @@ export default {
     anItem(605, 6, 'battery.jpg'),
     anItem(606, 6, 'room6-enchufe.jpg'),
     aPluginItem(607, 6, 'pizarra-hint-1.jpg', PizarraHint, ROOM_6_PIZARRA_ARGS),
+
+    anItem(701, 7, 'cueva-y-hechicero.jpg'),
+    aDifferentItemMultiple(702, 7, [
+      anImageFor('magia-negra-spells-1.jpg', [1]),
+      anImageFor('magia-negra-spells-2.jpg', [2]),
+      anImageFor('magia-negra-spells-3.jpg', [3])
+    ]),
+    anItem(703, 7, 'magia-blanca-spells.jpg'),
 
     anItem(801, 8, 'room8-aula.jpg'),
     anItem(802, 8, 'room8-espejo.jpg'),

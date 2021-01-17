@@ -53,7 +53,6 @@ export default {
     }
   },
   async mounted() {
-    console.log('mounted init');
     try {
       await loggedPromise;
     } catch (error) {
@@ -66,10 +65,7 @@ export default {
   methods: {
     createCode() {
       if (!this.gameState) {
-        console.log('Creating game state');
         this.$firestoreRefs.gameState.set(BLANK_FIREBASE_GAME);
-      } else {
-        console.log('game state already created', this.gameState);
       }
     },
     closeWelcome() {

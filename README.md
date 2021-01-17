@@ -35,3 +35,4 @@ https://domain/GAMECODE/numberplayers/usercode
 <a href='https://www.freepik.com/photos/background'>Background photo created by benzoix - www.freepik.com</a>
 <a href='https://www.freepik.es/photos/vintage'>Foto de Vintage creado por kjpargeter - www.freepik.es</a>
 <a href='https://www.freepik.es/photos/fondo'>Foto de Fondo creado por kjpargeter - www.freepik.es</a>
+<a href='https://www.freepik.es/fotos/marco'>Foto de Marco creado por jannoon028 - www.freepik.es</a>

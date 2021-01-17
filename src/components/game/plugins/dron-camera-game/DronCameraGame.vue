@@ -188,7 +188,7 @@ export default {
     return {
       publicPath: process.env.BASE_URL,
       fieldImageClientRect: null,
-      dronCellPosition: null,
+      dronCellPosition: { },
     };
   },
   firestore: {
@@ -255,6 +255,7 @@ export default {
   },
   watch: {
     dronCellPosition() {
+      console.log('changed dron cell', this.dronCellPosition);
       if (isAdmin() && this.dronCellPosition === null) {
         this.$firestoreRefs.dronCellPosition.set(BLANK_DRON_CELL_POSITION);
       }
