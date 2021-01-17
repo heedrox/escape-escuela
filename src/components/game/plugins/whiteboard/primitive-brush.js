@@ -82,7 +82,7 @@ export default class PrimitiveBrush {
   end(event, _) {
     this.move(event);
     this.isTouching = false;
-    this.endCallback(this.strokes);
+    this.endCallback(this.canvas.toDataURL('image/jpeg', 0.7));
   }
 
   _draw() {

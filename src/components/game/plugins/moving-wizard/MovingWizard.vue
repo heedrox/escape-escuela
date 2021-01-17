@@ -13,7 +13,7 @@
         VER RESULTADO
       </button>
     </div>
-    <moving-wizard-spell-result></moving-wizard-spell-result>
+    <moving-wizard-spell-result v-if="gameState.spellShowResult"></moving-wizard-spell-result>
   </div>
 </template>
 <style lang="scss" scoped="true">
@@ -44,7 +44,9 @@ export default {
     return {
       gameState: {
         activeSpell: 0, //indexed by 1, 0 = no active
-        spellplayer0: [], spellplayer1: [], spellplayer2: [], spellplayer3: [] },
+        spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '',
+        spellShowResult: false
+      },
     }
   },
   firestore: {
@@ -69,8 +71,13 @@ export default {
       return isAdmin();
     },
     adminThrowSpell() {
+      this.$firestoreRefs.gameState.update( { spellShowResult: false });
       const activeSpell = this.calculateNextSpell();
-      this.$firestoreRefs.gameState.update( { activeSpell });
+      this.$firestoreRefs.gameState.update( { activeSpell: 0,
+        spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '', });
+      setTimeout(() => {
+        this.$firestoreRefs.gameState.update( { activeSpell });
+      }, 1000);
     },
     calculateNextSpell() {
       if (!this.gameState.activeSpell) return 1;
@@ -78,7 +85,7 @@ export default {
       return (nextSpell >= SPELLS_BY_WIZARD[`when${getNumberPlayers()}players`].length) ? 1 : nextSpell;
     },
     showSpellResult() {
-
+      this.$firestoreRefs.gameState.update( { spellShowResult: true });
     },
   }
 }

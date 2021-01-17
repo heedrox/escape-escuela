@@ -85,11 +85,11 @@ export default {
     },
     reattach() {
       if (this.primitiveBrush) this.primitiveBrush.dettach();
-      this.primitiveBrush.attach((strokes) => this.sendStrokes(strokes));
+      this.primitiveBrush.attach((dataImage) => this.sendStrokes(dataImage));
     },
-    sendStrokes: function (strokes) {
+    sendStrokes: function (dataImage) {
       let updatedObj = {};
-      updatedObj[`spellplayer${this.getPlayerNumber()}`] = strokes;
+      updatedObj[`spellplayer${this.getPlayerNumber()}`] = dataImage;
       this.$firestoreRefs.gameState.update( updatedObj );
     }
   }
