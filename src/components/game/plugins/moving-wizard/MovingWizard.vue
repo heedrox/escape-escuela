@@ -13,7 +13,12 @@
         VER RESULTADO
       </button>
     </div>
-    <moving-wizard-spell-result v-if="gameState.spellShowResult"></moving-wizard-spell-result>
+    <moving-wizard-spell-result v-if="gameState.spellShowResult"
+                                :active-spell="gameState.activeSpell"
+                                :player1-image="gameState.spellplayer1"
+                                :player2-image="gameState.spellplayer2"
+                                :player3-image="gameState.spellplayer3"
+    ></moving-wizard-spell-result>
   </div>
 </template>
 <style lang="scss" scoped="true">
@@ -23,8 +28,6 @@
   top: 0vh;
   left: 0vw;
 }
-
-
 </style>
 <script>
 import { isAdmin } from '@/lib/is-admin';
