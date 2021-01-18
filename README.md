@@ -1,4 +1,4 @@
-# Escape de Gaztelueta
+# Escape de Escuela
 
 ¡Estoy atrapado en tu colegio! Fui a buscarte, y debí estar husmeando donde no debía, porque empecé a encontrar cosas...
 Cosas que no puedo escribir por aquí. Necesito contártelo. Pero alguien se debió sentir amenazado, y me dejó inconsciente.
