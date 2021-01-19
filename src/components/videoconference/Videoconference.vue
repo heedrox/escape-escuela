@@ -12,7 +12,7 @@
 import { isAdmin } from '@/lib/is-admin';
 import firebaseUtil from '@/lib/firebase-util';
 import { getPlayerNumber } from '@/lib/get-player-number';
-import gameActions from '../game/game-actions/lib/game-actions-lib';
+import gameActions from '../../lib/game-actions-lib';
 import VideoLoading from '@/components/videoconference/video-loading/VideoLoading';
 import VideoFrame from '@/components/videoconference/video-frame/VideoFrame';
 import VideoControl from '@/components/videoconference/video-control/VideoControl';

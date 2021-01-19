@@ -7,7 +7,7 @@
     </video>
   </div>
 </template>
-<style scoped type="scss">
+<style scoped lang="scss">
 .zoomed-item {
   position: fixed;
   top: 10vh;

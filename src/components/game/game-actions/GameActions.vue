@@ -33,7 +33,7 @@ import { audioAction } from './audio';
 import firebaseUtil from '../../../lib/firebase-util';
 import { isAdmin } from '@/lib/is-admin';
 import gameConfig from '../../../config/game-config';
-import gameActions from './lib/game-actions-lib';
+import gameActions from '../../../lib/game-actions-lib';
 
 export default {
   name: 'GameActions',

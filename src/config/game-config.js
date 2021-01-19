@@ -9,6 +9,8 @@ const anItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: false });
 const anAudioItem = (id, roomId, image, thumbnail) =>
   ({ id, roomId, image, thumbnail, type: 'MP3', corrupted: false, invisible: false });
+const aVideoItem = (id, roomId, image) =>
+  ({ id, roomId, image, type: 'VIDEO', corrupted: false, invisible: false });
 
 const anInvisibleItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: true });
@@ -112,6 +114,8 @@ export default {
       anImageFor('magia-negra-spells-3.jpg', [3])
     ]),
     anItem(703, 7, 'magia-blanca-spells.jpg'),
+    anInvisibleItem(790, 7, 'monster-scream.mp3', 'MP3'),
+    anInvisibleItem(791, 7, 'monster-laugh.mp3', 'MP3'),
 
     anItem(801, 8, 'room8-aula.jpg'),
     anItem(802, 8, 'room8-espejo.jpg'),
@@ -120,6 +124,7 @@ export default {
     anItem(805, 8, 'room8-ordenador-password.jpg'),
     anItem(806, 8, 'room8-monitor-password-entered.jpg'),
     aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, ROOM_8_PIZARRA_ARGS),
+    aVideoItem(808, 8, 'video-habenpub.mp4')
 
 
   ]

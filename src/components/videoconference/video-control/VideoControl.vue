@@ -34,7 +34,7 @@
 <script>
 import { isAdmin } from '@/lib/is-admin';
 import firebaseUtil from '@/lib/firebase-util';
-import gameActions from '@/components/game/game-actions/lib/game-actions-lib';
+import gameActions from '@/lib/game-actions-lib';
 
 export default {
   name: 'VideoControl',

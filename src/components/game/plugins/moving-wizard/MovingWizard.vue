@@ -1,6 +1,8 @@
 <template>
   <div>
-    <moving-wizard-image :active-spell="gameState.activeSpell" />
+    <moving-wizard-image :active-spell="gameState.activeSpell" :show-spell="gameState.spellShowIt"
+                         :wizard-health="wizardHealth"
+    />
     <div v-if="isAdmin()" class="adminControlSpell">
       <button @click="adminThrowSpell">
         LANZAR HECHIZO
@@ -18,6 +20,8 @@
                                 :player1-image="gameState.spellplayer1"
                                 :player2-image="gameState.spellplayer2"
                                 :player3-image="gameState.spellplayer3"
+                                @result-ok="resultOk()"
+                                @result-ko="resultKo()"
     ></moving-wizard-spell-result>
   </div>
 </template>
@@ -36,6 +40,12 @@ import { getNumberPlayers } from '@/lib/get-number-players';
 import MovingWizardSpellResult from '@/components/game/plugins/moving-wizard/MovingWizardSpellResult';
 import MovingWizardImage from '@/components/game/plugins/moving-wizard/MovingWizardImage';
 import { SPELLS_BY_WIZARD } from '@/components/game/plugins/moving-wizard/spells-by-wizard';
+import gameActions from '@/lib/game-actions-lib';
+
+const WIZARD_AUDIOS = {
+  OK: 790,
+  KO: 791
+};
 
 export default {
   name: 'MovingWizard',
@@ -48,7 +58,9 @@ export default {
       gameState: {
         activeSpell: 0, //indexed by 1, 0 = no active
         spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '',
-        spellShowResult: false
+        spellShowResult: false,
+        spellWizardHealth: 100,
+        spellShowIt: false,
       },
     }
   },
@@ -68,6 +80,11 @@ export default {
     player3strokes() {
       return this.gameState.spellplayer3 ? this.gameState.spellplayer3.length : 0 ;
     },
+    wizardHealth() {
+      if (!this.gameState.spellWizardHealth) return 100;
+      if (this.gameState.spellWizardHealth<=0) return 0;
+      return this.gameState.spellWizardHealth;
+    }
   },
   methods: {
     isAdmin() {
@@ -77,9 +94,9 @@ export default {
       this.$firestoreRefs.gameState.update( { spellShowResult: false });
       const activeSpell = this.calculateNextSpell();
       this.$firestoreRefs.gameState.update( { activeSpell: 0,
-        spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '', });
+        spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '', spellShowIt: false });
       setTimeout(() => {
-        this.$firestoreRefs.gameState.update( { activeSpell });
+        this.$firestoreRefs.gameState.update( { activeSpell, spellShowIt: true });
       }, 1000);
     },
     calculateNextSpell() {
@@ -90,6 +107,20 @@ export default {
     showSpellResult() {
       this.$firestoreRefs.gameState.update( { spellShowResult: true });
     },
+    resultOk() {
+      gameActions.send(this.$firestoreRefs.gameState, { id: 'AUDIO', argId: WIZARD_AUDIOS.OK})
+      this.$firestoreRefs.gameState.update( { spellWizardHealth: this.addWizardHealth(-40), spellShowIt: false });
+      this.showSpell = false;
+    },
+    resultKo() {
+      gameActions.send(this.$firestoreRefs.gameState, { id: 'AUDIO', argId: WIZARD_AUDIOS.KO})
+      this.$firestoreRefs.gameState.update( { spellWizardHealth: this.addWizardHealth(40), spellShowIt: false });
+      this.showSpell = true;
+    },
+    addWizardHealth(num) {
+      const currentHealth = this.gameState.spellWizardHealth ? this.gameState.spellWizardHealth : 100;
+      return currentHealth + num;
+    }
   }
 }
 </script>

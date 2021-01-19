@@ -1,7 +1,7 @@
 <template>
   <div>
     <img id="theWizard" :src="wizardUrl()" alt="the wizard" :style="wizardStyle" @click="clickWizard">
-    <div v-if="activeSpell" class="activeSpell">
+    <div v-if="activeSpell && showSpell" class="activeSpell">
       <img :src="activeSpellUrl" alt="the-spell" class="activeSpell" :style="spellStyle" @click="clickWizard" />
     </div>
   </div>
@@ -64,6 +64,14 @@ export default {
       type: Number,
       default: 0,
     },
+    wizardHealth: {
+      type: Number,
+      default: 100,
+    },
+    showSpell: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {
@@ -88,6 +96,7 @@ export default {
       return {
         top: this.wizardPosition.top + 'vh',
         left: this.wizardPosition.left + 'vw',
+        maxHeight: 30 * this.wizardHealth / 100 + 'vh',
       };
     },
     spellStyle() {
