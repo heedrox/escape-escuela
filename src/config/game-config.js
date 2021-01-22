@@ -114,6 +114,7 @@ export default {
       anImageFor('magia-negra-spells-3.jpg', [3])
     ]),
     anItem(703, 7, 'magia-blanca-spells.jpg'),
+    aVideoItem(704, 7, 'escape-escuela-ending.mp4'),
     anInvisibleItem(790, 7, 'monster-scream.mp3', 'MP3'),
     anInvisibleItem(791, 7, 'monster-laugh.mp3', 'MP3'),
 

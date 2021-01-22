@@ -130,8 +130,7 @@ export default {
       return this.evilName.toUpperCase().indexOf(ltr.toUpperCase()) === -1;
     },
     getLetterSrc(ltr) {
-      console.log('get letter', ltr);
-      return `${this.publicPath}game/evil-letters/letra-${ltr}.png`
+      return `${this.publicPath}game/evil-letters/letra-${ltr.toLowerCase()}.png`
     },
   },
 };
