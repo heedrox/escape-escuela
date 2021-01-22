@@ -83,7 +83,7 @@ export default {
     pressStart() {
       if (window.confirm('Quieres restartear el timer?')) {
         this.now = new Date();
-        db.doc(FIREBASE_URL).update({endTime: addHours(1, this.now)});
+        this.$firestoreRefs.gameState.update({endTime: addHours(1, this.now)});
       }
     }
   }
