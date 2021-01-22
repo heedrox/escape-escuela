@@ -56,6 +56,7 @@
 <script>
 import { getNumberPlayers } from '@/lib/get-number-players';
 import { SPELLS_BY_WIZARD } from '@/components/game/plugins/moving-wizard/spells-by-wizard';
+import { getGameCode } from '@/lib/get-game-code';
 
 export default {
   name: 'MovingWizardImage',
@@ -118,7 +119,7 @@ export default {
   },
   methods: {
     wizardUrl() {
-      return this.publicPath + 'game/moving-wizard/wizard.png';
+      return `${this.publicPath}game/moving-wizard/wizard-${getGameCode()}.png`;
     },
     moveWizard() {
       if (Math.random() < 0.5) {
