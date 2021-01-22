@@ -31,6 +31,8 @@ export default {
       }
     }
 
+    baseConfig['welcomeText'] = configByGameCode['welcomeText'];
+
     return baseConfig;
   }
 }

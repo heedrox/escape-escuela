@@ -49,6 +49,8 @@
 </style>
 <script>
 import { isAdmin } from '@/lib/is-admin';
+import { SPELLS_BY_WIZARD } from '@/components/game/plugins/moving-wizard/spells-by-wizard';
+import { getNumberPlayers } from '@/lib/get-number-players';
 
 export default {
   name: 'MovingWizardSpellResult',
@@ -78,7 +80,8 @@ export default {
   },
   computed: {
     whiteSpellUrl() {
-      return `${this.publicPath}game/moving-wizard/white-spell-riddikulus.png`;
+      const currentSpell = SPELLS_BY_WIZARD[`when${getNumberPlayers()}players`][this.activeSpell];
+      return `${this.publicPath}game/moving-wizard/white-spell-${currentSpell}.png`;
     }
   },
   mounted() {

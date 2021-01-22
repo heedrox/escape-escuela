@@ -19,5 +19,12 @@ export default {
   images: {
     '#CUEVA_Y_HECHICERO#': 'cueva-y-hechicero-nietas-de-nod.jpg',
   },
+  welcomeText: [
+    'Clara y Belit,<br /><br />',
+    'Estoy atrapado.<br /><br />',
+    'Cuando fui a recoger a mi sobrino a su colegio, alguien me pilló husmeando.<br /><br />',
+    'Algo debí encontrar porque me han encerrado. <br /><br />',
+    'Ayudadme a salir y veamos qué malévolos misterios esconde este colegio.',
+  ].join(''),
 }
 

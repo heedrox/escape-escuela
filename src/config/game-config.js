@@ -30,6 +30,13 @@ export default {
   defaultUnlockedItems: [],
   players: playerCodes,
   embedVideoconference: false,
+  welcomeText: [
+    'Iñigo & amigos,<br /><br />',
+    'Estoy atrapado.<br /><br />',
+    'Cuando fui a recoger a Iñigo al colegio, alguien me pilló husmeando.<br /><br />',
+    'Algo debí encontrar porque me han encerrado. <br /><br />',
+    'Ayudadme a salir y veamos qué misterios esconde este colegio.',
+  ].join(''),
   codes: [
     '0000', //to test
 

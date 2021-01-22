@@ -2,11 +2,7 @@
   <div class="welcome">
     <welcome-title v-if="state === 'SHOW_WELCOME'" @start="showScroll()"></welcome-title>
     <welcome-scroll v-if="state === 'SHOW_SCROLL'" @start="doStart()">
-      Iñigo & amigos,<br /><br />
-      Estoy atrapado.<br /><br />
-      Cuando fui a recoger a Iñigo al colegio, alguien me pilló husmeando.<br /><br />
-      Algo debí encontrar porque me han encerrado. <br /><br />
-      Ayudadme a salir y veamos qué misterios esconde este colegio.
+      {{ scrollText }}
     </welcome-scroll>
   </div>
 </template>
@@ -14,6 +10,9 @@
 <script>
 import WelcomeTitle from './WelcomeTitle';
 import WelcomeScroll from './WelcomeScroll';
+import gameConfigFactory from '@/lib/game-config-factory';
+
+const gameConfig = gameConfigFactory.get();
 
 const STATES = {
   SHOW_WELCOME: 'SHOW_WELCOME',
@@ -31,6 +30,11 @@ export default {
     return {
       state: STATES.SHOW_WELCOME,
     }
+  },
+  computed: {
+    scrollText() {
+      return gameConfig.welcomeText;
+    },
   },
   mounted() {
   },
