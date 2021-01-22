@@ -16,5 +16,8 @@ export default {
     fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
   'ROOM_8_COMPUTER_ARGS': { image: 'game/8/room8-monitor-password-entered.jpg', left: 40, top: 55,
     fontSize: 6, text: EVIL_NAME, evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
+  images: {
+    '#CUEVA_Y_HECHICERO#': 'cueva-y-hechicero-nietas-de-nod.jpg',
+  },
 }
 

@@ -1,4 +1,3 @@
-import { getNumberPlayers } from '@/lib/get-number-players';
 import Whiteboard from '@/components/game/plugins/whiteboard/Whiteboard';
 import playerCodes from './player-codes';
 import DronCameraGame from '@/components/game/plugins/dron-camera-game/DronCameraGame';
@@ -7,8 +6,6 @@ import MovingWizard from '@/components/game/plugins/moving-wizard/MovingWizard';
 
 const anItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: false });
-const anAudioItem = (id, roomId, image, thumbnail) =>
-  ({ id, roomId, image, thumbnail, type: 'MP3', corrupted: false, invisible: false });
 const aVideoItem = (id, roomId, image) =>
   ({ id, roomId, image, type: 'VIDEO', corrupted: false, invisible: false });
 
@@ -16,8 +13,6 @@ const anInvisibleItem = (id, roomId, image, type = '') =>
   ({ id, roomId, image, type, corrupted: false, invisible: true });
 const aCorruptedItem = (id, roomId, image, destinataries, type = '') =>
   ({ id, roomId, image, destinataries, type, corrupted: true });
-const aDifferentItem = (id, roomId, imageA, imageB, destinataries) =>
-  ({ id, roomId, imageA, imageB, destinataries, different: true });
 const aDifferentItemMultiple = (id, roomId, images) =>
   ({ id, roomId, images, differentMultiple: true });
 const anImageFor = (image, whoSees) => ({ image, whoSees });
@@ -25,28 +20,8 @@ const aPluginItem = (id, roomId, image, pluginVue, args) =>
   ({ id, roomId, image, pluginVue, args, plugin: true });
 const byNumberDestinataries = (ifTwo, ifThree) => ({ ifTwo, ifThree });
 
-const when2 = (resIf2, resIf3) => (getNumberPlayers() === 2 ? resIf2 : resIf3);
 
 const EVIL_NAME = 'ALICIA';
-const EVIL_LETTERS = {
-  A: '1',
-  L: '2',
-  I: '5',
-  C: '4',
-};
-
-const ROOM_2_PIZARRA_ARGS = { image: 'game/2/pizarra-hint-3.jpg', left: 55, top: 35,
-  fontSize: 7, text: 'HUID', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS };
-
-const ROOM_6_PIZARRA_ARGS = { image: 'game/6/pizarra-hint-1.jpg', left: 15, top: 33,
-  fontSize: 6, text: 'EL TIEMPO SE AGOTA', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS };
-
-const ROOM_8_PIZARRA_ARGS = { image: 'game/8/pizarra-hint-2.jpg', left: 12, top: 37,
-  fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS };
-
-const ROOM_8_COMPUTER_ARGS = { image: 'game/8/room8-monitor-password-entered.jpg', left: 40, top: 55,
-  fontSize: 6, text: EVIL_NAME, evilName: EVIL_NAME, evilLetters: EVIL_LETTERS };
-
 
 export default {
   defaultActiveRoom: 4,
@@ -116,7 +91,7 @@ export default {
     anItem(606, 6, 'room6-enchufe.jpg'),
     aPluginItem(607, 6, 'pizarra-hint-1.jpg', PizarraHint, 'ROOM_6_PIZARRA_ARGS'),
 
-    anItem(701, 7, 'cueva-y-hechicero.jpg'),
+    anItem(701, 7, '#CUEVA_Y_HECHICERO#'),
     aDifferentItemMultiple(702, 7, [
       anImageFor('magia-negra-spells-1.jpg', [1]),
       anImageFor('magia-negra-spells-2.jpg', [2]),

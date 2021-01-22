@@ -10,8 +10,14 @@ export default {
     console.log(baseConfig);
     baseConfig.codes.push(configByGameCode.EVIL_NAME);
 
-    //pizarra args
+
     for (let a = 0; a<baseConfig.items.length; a++) {
+      //images
+      if ((typeof baseConfig.items[a].image !== 'undefined') &&
+        (baseConfig.items[a].image.indexOf('#') === 0)) {
+        baseConfig.items[a].image = configByGameCode.images[baseConfig.items[a].image];
+      }
+      //pizarra args
       if (baseConfig.items[a].plugin === true) {
         if (baseConfig.items[a].args === 'ROOM_2_PIZARRA_ARGS') {
           baseConfig.items[a].args = configByGameCode['ROOM_2_PIZARRA_ARGS'];
@@ -24,6 +30,7 @@ export default {
         }
       }
     }
+
     return baseConfig;
   }
 }
