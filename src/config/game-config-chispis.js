@@ -27,12 +27,13 @@ const byNumberDestinataries = (ifTwo, ifThree) => ({ ifTwo, ifThree });
 
 const when2 = (resIf2, resIf3) => (getNumberPlayers() === 2 ? resIf2 : resIf3);
 
-const EVIL_NAME = 'ALICIA';
+const EVIL_NAME = 'CHISPIS';
 const EVIL_LETTERS = {
-  A: '1',
-  L: '2',
-  I: '5',
-  C: '4',
+  C: '1',
+  H: '2',
+  I: '3',
+  S: '4',
+  P: '5',
 };
 
 const ROOM_2_PIZARRA_ARGS = { image: 'game/2/pizarra-hint-3.jpg', left: 55, top: 35,
@@ -43,9 +44,6 @@ const ROOM_6_PIZARRA_ARGS = { image: 'game/6/pizarra-hint-1.jpg', left: 15, top:
 
 const ROOM_8_PIZARRA_ARGS = { image: 'game/8/pizarra-hint-2.jpg', left: 12, top: 37,
   fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS };
-
-const ROOM_8_COMPUTER_ARGS = { image: 'game/8/room8-monitor-password-entered.jpg', left: 40, top: 55,
-  fontSize: 6, text: EVIL_NAME, evilName: EVIL_NAME, evilLetters: EVIL_LETTERS };
 
 
 export default {
@@ -132,11 +130,10 @@ export default {
     anItem(803, 8, 'room8-ordenador.jpg'),
     anItem(804, 8, 'tetris-solution.jpg'),
     anItem(805, 8, 'room8-ordenador-password.jpg'),
-    aPluginItem(806, 8, 'room8-monitor-password-entered.jpg', PizarraHint, ROOM_8_COMPUTER_ARGS),
+    anItem(806, 8, 'room8-monitor-password-entered.jpg'),
     aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, ROOM_8_PIZARRA_ARGS),
     aVideoItem(808, 8, 'video-habenpub.mp4')
 
 
   ]
 }
-

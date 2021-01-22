@@ -78,6 +78,10 @@ export default {
     evilName: {
       type: String,
       default: '',
+    },
+    evilLetters: {
+      type: Object,
+      default: () => {},
     }
   },
   data() {
@@ -130,7 +134,8 @@ export default {
       return this.evilName.toUpperCase().indexOf(ltr.toUpperCase()) === -1;
     },
     getLetterSrc(ltr) {
-      return `${this.publicPath}game/evil-letters/letra-${ltr.toLowerCase()}.png`
+      const letterFile = this.evilLetters[ltr.toUpperCase()];
+      return `${this.publicPath}game/evil-letters/letra-${letterFile}.png`
     },
   },
 };
