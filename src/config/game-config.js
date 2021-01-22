@@ -82,7 +82,7 @@ export default {
     anItem(201, 2, 'room2.jpg'),
     anItem(202, 2, 'library.jpg'),
     anItem(203, 2, 'room2-book.jpg'),
-    aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, ROOM_2_PIZARRA_ARGS),
+    aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, 'ROOM_2_PIZARRA_ARGS'),
     aDifferentItemMultiple(205, 2, [
       anImageFor('magia-negra-spells-1.jpg', [1]),
       anImageFor('magia-negra-spells-2.jpg', [2]),
@@ -114,7 +114,7 @@ export default {
     anItem(604, 6, 'room6-trampilla.jpg'),
     anItem(605, 6, 'battery.jpg'),
     anItem(606, 6, 'room6-enchufe.jpg'),
-    aPluginItem(607, 6, 'pizarra-hint-1.jpg', PizarraHint, ROOM_6_PIZARRA_ARGS),
+    aPluginItem(607, 6, 'pizarra-hint-1.jpg', PizarraHint, 'ROOM_6_PIZARRA_ARGS'),
 
     anItem(701, 7, 'cueva-y-hechicero.jpg'),
     aDifferentItemMultiple(702, 7, [
@@ -132,8 +132,8 @@ export default {
     anItem(803, 8, 'room8-ordenador.jpg'),
     anItem(804, 8, 'tetris-solution.jpg'),
     anItem(805, 8, 'room8-ordenador-password.jpg'),
-    aPluginItem(806, 8, 'room8-monitor-password-entered.jpg', PizarraHint, ROOM_8_COMPUTER_ARGS),
-    aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, ROOM_8_PIZARRA_ARGS),
+    aPluginItem(806, 8, 'room8-monitor-password-entered.jpg', PizarraHint, 'ROOM_8_COMPUTER_ARGS'),
+    aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, 'ROOM_8_PIZARRA_ARGS'),
     aVideoItem(808, 8, 'video-habenpub.mp4')
 
 

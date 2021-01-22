@@ -45,7 +45,7 @@
 <script>
 import Map from './map/Map';
 import Room from './room/Room';
-import GAME_CONFIG from '../../config/game-config.js';
+import gameConfigFactory from '@/lib/game-config-factory';
 import CodeBreaker from './code-breaker/CodeBreaker';
 import Counter from './counter/Counter';
 import GameActions from './game-actions/GameActions';
@@ -55,6 +55,8 @@ import firebaseUtil from '@/lib/firebase-util';
 const addPlugin = (plugins, plugin) => plugins.indexOf(plugin) >= 0 ? plugins : plugins.concat(plugin);
 const removePlugin = (plugins, plugin) => plugins.indexOf(plugin) === -1 ? plugins :
     plugins.slice(0,plugins.indexOf(plugin)).concat(plugins.slice(plugins.indexOf(plugin)+1));
+
+const GAME_CONFIG = gameConfigFactory.get();
 
 export default {
   name: 'Game',

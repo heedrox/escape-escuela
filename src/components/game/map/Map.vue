@@ -71,9 +71,11 @@
   </div>
 </template>
 <script>
-import { isAdmin } from '../../../lib/is-admin';
+import { isAdmin } from '@/lib/is-admin';
 import firebaseUtil from '../../../lib/firebase-util';
-import config from '../../../config/game-config';
+import gameConfigFactory from '@/lib/game-config-factory';
+
+const gameConfig = gameConfigFactory.get();
 
 export default {
   name: 'Map',
@@ -134,7 +136,7 @@ export default {
       return this.mapState.unlockedRooms.indexOf(room) >= 0;
     },
     existsRoom(room) {
-      return config.availableRooms.indexOf(room) >= 0;
+      return gameConfig.availableRooms.indexOf(room) >= 0;
     }
   }
 }

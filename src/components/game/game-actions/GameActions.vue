@@ -32,8 +32,10 @@ import { glitchAction } from './glitch';
 import { audioAction } from './audio';
 import firebaseUtil from '../../../lib/firebase-util';
 import { isAdmin } from '@/lib/is-admin';
-import gameConfig from '../../../config/game-config';
 import gameActions from '../../../lib/game-actions-lib';
+import gameConfigFactory from '@/lib/game-config-factory';
+
+const gameConfig = gameConfigFactory.get();
 
 export default {
   name: 'GameActions',

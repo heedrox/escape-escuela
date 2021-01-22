@@ -1,4 +1,6 @@
-import gameConfig from '../../../../config/game-config';
+import gameConfigFactory from '@/lib/game-config-factory';
+
+const gameConfig = gameConfigFactory.get();
 
 const audioAction = (path, audioId) => {
   const theAudio = gameConfig.items.find(aud => aud.id === audioId);

@@ -1,10 +1,9 @@
-const EVIL_NAME = 'CHISPIS';
+const EVIL_NAME = 'ALICIA';
 const EVIL_LETTERS = {
-  C: '1',
-  H: '2',
-  I: '3',
-  S: '4',
-  P: '5',
+  A: '1',
+  L: '2',
+  I: '5',
+  C: '4',
 };
 
 export default {
@@ -15,7 +14,7 @@ export default {
     fontSize: 6, text: 'EL TIEMPO SE AGOTA', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
   'ROOM_8_PIZARRA_ARGS': { image: 'game/8/pizarra-hint-2.jpg', left: 12, top: 37,
     fontSize: 4.8, text: 'EL INNOMBRABLE SE ACERCA', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
-  'ROOM_8_COMPUTER_ARGS': { image: 'game/8/room8-monitor-password-entered.jpg', left: 35, top: 55,
+  'ROOM_8_COMPUTER_ARGS': { image: 'game/8/room8-monitor-password-entered.jpg', left: 40, top: 55,
     fontSize: 6, text: EVIL_NAME, evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
 }
 

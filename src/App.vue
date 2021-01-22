@@ -18,10 +18,12 @@
 import Welcome from './components/welcome/Welcome.vue'
 import Game from './components/game/Game';
 import Videoconference from './components/videoconference/Videoconference';
-import gameConfig from './config/game-config';
+import gameConfigFactory from '@/lib/game-config-factory';
 import './assets/common/normalize.css'
 import './assets/common/common.scss'
 import firebaseUtil from '@/lib/firebase-util';
+
+const gameConfig = gameConfigFactory.get();
 
 const STATES = {
   INIT: 'INIT',
