@@ -31,11 +31,9 @@
 import firebaseUtil from '@/lib/firebase-util';
 
 const asCounterWithPadding = (number, padding) => number < 10 ? (padding + number) : (number + '')
-import { addHours, diffMinutes, diffSeconds } from '../../../lib/dates'
-import {isAdmin} from '../../../lib/is-admin';
-import { getGameCode } from '../../../lib/get-game-code';
-
-const FIREBASE_URL = `/game-states/${getGameCode()}/`;
+import { addHours, diffMinutes, diffSeconds } from '@/lib/dates'
+import {isAdmin} from '@/lib/is-admin';
+import { getGameCode } from '@/lib/get-game-code';
 
 export default {
   name: 'Counter',
@@ -46,7 +44,7 @@ export default {
     }
   },
   firestore: {
-    gameState: firebaseUtil.doc(FIREBASE_URL),
+    gameState: firebaseUtil.doc('/'),
   },
   computed: {
     endTime: function() {
