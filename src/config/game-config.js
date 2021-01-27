@@ -65,11 +65,7 @@ export default {
     anItem(202, 2, 'library.jpg'),
     anItem(203, 2, 'room2-book.jpg'),
     aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, 'ROOM_2_PIZARRA_ARGS'),
-    aDifferentItemMultiple(205, 2, [
-      anImageFor('magia-negra-spells-1.jpg', [1]),
-      anImageFor('magia-negra-spells-2.jpg', [2]),
-      anImageFor('magia-negra-spells-3.jpg', [3])
-    ]),
+    anItem(204, 2, 'varita.jpg'),
 
     anItem(401, 4, 'room-jail.jpg'),
     anItem(402, 4, 'lockbox-con-candado.jpg'),
