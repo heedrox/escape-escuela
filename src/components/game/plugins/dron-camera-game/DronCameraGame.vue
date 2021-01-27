@@ -2,7 +2,9 @@
   <div>
     <div class="zoomed-item box" @click.stop="">
       <span class="helper"></span>
-      <img v-if="dronCellPosition" id="fieldImage" alt="campo juego" :src="getUrl()" @load="recalculateClientRect()" />
+      <img v-if="!dronCellPosition.isLoading" id="fieldImage"
+           alt="campo juego" :src="getUrl()" @load="recalculateClientRect()"
+      />
     </div>
 
     <div class="hole" :style="{
@@ -188,7 +190,7 @@ export default {
     return {
       publicPath: process.env.BASE_URL,
       fieldImageClientRect: null,
-      dronCellPosition: { },
+      dronCellPosition: { isLoading: true },
     };
   },
   firestore: {
@@ -217,7 +219,6 @@ export default {
       return this.dronCellPosition ? (this.dronCellPosition.top) * this.holeHeight + 'px solid black' : '0px';
     },
     borderBottom() {
-      console.log(this.dronCellPosition);
       return this.dronCellPosition ? (4-this.dronCellPosition.top) * this.holeHeight + 'px solid black' : '0px';
     },
     holePosition() {
