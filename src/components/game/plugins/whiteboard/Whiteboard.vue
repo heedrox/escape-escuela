@@ -1,6 +1,9 @@
 <template>
   <div v-show="!hidden" class="box theWhiteboard">
     <canvas id="whiteboardCanvas"></canvas>
+    <button @click="sendStrokes">
+      LANZAR HECHIZO
+    </button>
   </div>
 </template>
 <style>
@@ -12,6 +15,16 @@
   width: 33vw;
   height: 37vh;
   text-align: left;
+}
+
+.theWhiteboard button {
+  position: absolute;
+  top: 34vh;
+  width: 15vw;
+  height: 3vh;
+  text-align:center;
+  margin:auto;
+  left: 8vw;
 }
 
 #whiteboardCanvas {
@@ -36,6 +49,7 @@ export default {
       publicPath: process.env.BASE_URL,
       hidden: false,
       primitiveBrush: null,
+      paintedImage: '',
     }
   },
   firestore: {
@@ -81,15 +95,15 @@ export default {
         height: window.innerHeight || document.body.clientHeight
       };
       document.getElementById('whiteboardCanvas').width = Math.floor(size.width * 0.33);
-      document.getElementById('whiteboardCanvas').height = Math.floor(size.height * 0.37);
+      document.getElementById('whiteboardCanvas').height = Math.floor(size.height * 0.33);
     },
     reattach() {
       if (this.primitiveBrush) this.primitiveBrush.dettach();
-      this.primitiveBrush.attach((dataImage) => this.sendStrokes(dataImage));
+      this.primitiveBrush.attach((dataImage) => this.paintedImage = dataImage);
     },
-    sendStrokes: function (dataImage) {
+    sendStrokes: function () {
       let updatedObj = {};
-      updatedObj[`spellplayer${this.getPlayerNumber()}`] = dataImage;
+      updatedObj[`spellplayer${this.getPlayerNumber()}`] = this.paintedImage;
       this.$firestoreRefs.gameState.update( updatedObj );
     }
   }

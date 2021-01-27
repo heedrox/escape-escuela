@@ -20,6 +20,7 @@ export default class PrimitiveBrush {
     this.canvas.addEventListener('mousedown', this.start.bind(this));
     this.canvas.addEventListener('mousemove', this.move.bind(this));
     this.canvas.addEventListener('mouseup', this.end.bind(this));
+    this.canvas.addEventListener('mouseleave', this.end.bind(this));
     this.canvas.addEventListener("touchstart", this.touchHandler.bind(this), true);
     this.canvas.addEventListener("touchmove", this.touchHandler.bind(this), true);
     this.canvas.addEventListener("touchend", this.touchHandler.bind(this), true);
@@ -32,6 +33,7 @@ export default class PrimitiveBrush {
     this.canvas.removeEventListener('mousedown', this.start.bind(this));
     this.canvas.removeEventListener('mousemove', this.move.bind(this));
     this.canvas.removeEventListener('mouseup', this.end.bind(this));
+    this.canvas.removeEventListener('mouseleave', this.end.bind(this));
     this.canvas.removeEventListener("touchstart", this.touchHandler.bind(this), true);
     this.canvas.removeEventListener("touchmove", this.touchHandler.bind(this), true);
     this.canvas.removeEventListener("touchend", this.touchHandler.bind(this), true);
