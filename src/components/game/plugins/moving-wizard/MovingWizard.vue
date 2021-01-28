@@ -94,7 +94,7 @@ export default {
       this.$firestoreRefs.gameState.update( { spellShowResult: false });
       const activeSpell = this.calculateNextSpell();
       this.$firestoreRefs.gameState.update( { activeSpell: 0,
-        spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '', spellShowIt: false });
+        spellplayer0: '', spellplayer1: '', spellplayer2: '', spellplayer3: '', spellplayer4: '', spellShowIt: false });
       setTimeout(() => {
         this.$firestoreRefs.gameState.update( { activeSpell, spellShowIt: true });
       }, 1000);

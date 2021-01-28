@@ -18,10 +18,10 @@ const aDifferentItemMultiple = (id, roomId, images) =>
 const anImageFor = (image, whoSees) => ({ image, whoSees });
 const aPluginItem = (id, roomId, image, pluginVue, args) =>
   ({ id, roomId, image, pluginVue, args, plugin: true });
-const byNumberDestinataries = (ifTwo, ifThree) => ({ ifTwo, ifThree });
+const byNumberDestinataries = (ifTwo, ifThree, ifFour) => ({ ifTwo, ifThree, ifFour });
 
 
-const EVIL_NAME = 'ALICIA';
+const EVIL_NAME = 'CHISPIS';
 
 export default {
   defaultActiveRoom: 4,
@@ -72,7 +72,6 @@ export default {
     anItem(403, 4, 'poster-toystory.jpg'),
     anItem(404, 4, 'room4-escoba.jpg'),
     anItem(405, 4, 'carta.jpg'),
-    //falta contenido de la caja
     anItem(406, 4, 'garfio.jpg'),
     anItem(407, 4, 'dron.jpg'),
     anItem(408, 4, 'llave.jpg'),
@@ -82,9 +81,9 @@ export default {
     anItem(503, 5, 'caja1.jpg'),
     anItem(504, 5, 'caja2.jpg'),
     anItem(505, 5, 'caja3.jpg'),
-    aCorruptedItem(506, 5, 'caja1-paper.jpg', byNumberDestinataries([1], [1])),
-    aCorruptedItem(507, 5, 'caja2-paper.jpg', byNumberDestinataries([2], [2])),
-    aCorruptedItem(508, 5, 'caja3-paper.jpg', byNumberDestinataries([3], [3])),
+    aCorruptedItem(506, 5, 'caja1-paper.jpg', byNumberDestinataries([1], [1], [1])),
+    aCorruptedItem(507, 5, 'caja2-paper.jpg', byNumberDestinataries([2], [2], [2])),
+    aCorruptedItem(508, 5, 'caja3-paper.jpg', byNumberDestinataries([3], [3], [3,4])),
 
     anItem(601, 6, 'room6-steam.jpg'),
     anItem(602, 6, 'room6-armario.jpg'),
@@ -96,7 +95,7 @@ export default {
 
     anItem(701, 7, '#CUEVA_Y_HECHICERO#'),
     aDifferentItemMultiple(702, 7, [
-      anImageFor('magia-negra-spells-1.jpg', [1]),
+      anImageFor('magia-negra-spells-1.jpg', [1, 4]),
       anImageFor('magia-negra-spells-2.jpg', [2]),
       anImageFor('magia-negra-spells-3.jpg', [3])
     ]),

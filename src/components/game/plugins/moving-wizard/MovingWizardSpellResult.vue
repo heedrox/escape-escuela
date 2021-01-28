@@ -5,6 +5,7 @@
       <img class="box spell" :src="player1Image" alt="spell 1">
       <img class="box spell" :src="player2Image" alt="spell 2">
       <img v-if="player3Image !== ''" class="box spell" :src="player3Image" alt="spell 3">
+      <img v-if="player4Image !== ''" class="box spell" :src="player4Image" alt="spell 3">
     </div>
     <div v-if="isAdmin()" class="spell-actions">
       <button @click="$emit('result-ok')">
@@ -70,7 +71,11 @@ export default {
     player3Image: {
       type: String,
       default: '',
-    }
+    },
+    player4Image: {
+      type: String,
+      default: '',
+    },
   },
   emits: ['result-ok', 'result-ko'],
   data() {

@@ -182,7 +182,13 @@ const WHO_CAN_MOVE = {
     'left': [2],
     'right': [3],
     'bottom': [1,2,3],
-  }
+  },
+  'when4players' : {
+    'up': [1],
+    'left': [2],
+    'right': [3],
+    'bottom': [4],
+  },
 }
 export default {
   name: 'DronCameraGame',

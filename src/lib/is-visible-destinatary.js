@@ -5,8 +5,12 @@ export const isVisibleForMe = (destinataries) => {
   if (!destinataries) return true;
   const numberPlayers = getNumberPlayers();
   const playerNumber = getPlayerNumber();
-  return numberPlayers === 2 ?
-    destinataries.ifTwo.indexOf(playerNumber) < 0 :
-    destinataries.ifThree.indexOf(playerNumber) < 0;
+  if (numberPlayers === 2) {
+    return destinataries.ifTwo.indexOf(playerNumber) < 0;
+  } else if (numberPlayers === 3) {
+    return destinataries.ifThree.indexOf(playerNumber) < 0;
+  } else {
+    return destinataries.ifFour.indexOf(playerNumber) < 0;
+  }
 };
 
