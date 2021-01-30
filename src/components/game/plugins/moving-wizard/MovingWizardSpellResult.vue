@@ -37,7 +37,7 @@
 }
 
 .spell {
-  max-width: 20vw;
+  max-width: 15vw;
   margin: 2vw;
   max-height: 30vh;
 }

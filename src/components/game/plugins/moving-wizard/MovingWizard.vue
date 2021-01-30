@@ -7,10 +7,10 @@
       <button @click="adminThrowSpell">
         LANZAR HECHIZO
       </button>
-      {{ player0strokes }} -
       {{ player1strokes }} -
       {{ player2strokes }} -
-      {{ player3strokes }}
+      {{ player3strokes }} -
+      {{ player4strokes }}
       <button @click="showSpellResult">
         VER RESULTADO
       </button>
@@ -20,6 +20,7 @@
                                 :player1-image="gameState.spellplayer1"
                                 :player2-image="gameState.spellplayer2"
                                 :player3-image="gameState.spellplayer3"
+                                :player4-image="gameState.spellplayer4"
                                 @result-ok="resultOk()"
                                 @result-ko="resultKo()"
     ></moving-wizard-spell-result>
@@ -68,9 +69,6 @@ export default {
     gameState: firebaseUtil.doc('/')
   },
   computed: {
-    player0strokes() {
-      return this.gameState.spellplayer0 ? this.gameState.spellplayer0.length : 0 ;
-    },
     player1strokes() {
       return this.gameState.spellplayer1 ? this.gameState.spellplayer1.length : 0 ;
     },
@@ -79,6 +77,9 @@ export default {
     },
     player3strokes() {
       return this.gameState.spellplayer3 ? this.gameState.spellplayer3.length : 0 ;
+    },
+    player4strokes() {
+      return this.gameState.spellplayer4 ? this.gameState.spellplayer4.length : 0 ;
     },
     wizardHealth() {
       if (!this.gameState.spellWizardHealth) return 100;

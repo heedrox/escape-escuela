@@ -111,7 +111,9 @@ export default {
     anItem(805, 8, 'room8-ordenador-password.jpg'),
     aPluginItem(806, 8, 'room8-monitor-password-entered.jpg', PizarraHint, 'ROOM_8_COMPUTER_ARGS'),
     aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, 'ROOM_8_PIZARRA_ARGS'),
-    aVideoItem(808, 8, 'video-habenpub.mp4')
+    aVideoItem(808, 8, 'video-habenpub.mp4'),
+    anInvisibleItem(890, 8, 'broken-glass.mp3', 'MP3'),
+
 
 
   ]
