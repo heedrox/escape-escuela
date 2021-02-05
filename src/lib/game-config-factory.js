@@ -12,6 +12,7 @@ export default {
 
 
     for (let a = 0; a<baseConfig.items.length; a++) {
+      baseConfig.background = configByGameCode.background;
       //images
       if ((typeof baseConfig.items[a].image !== 'undefined') &&
         (baseConfig.items[a].image.indexOf('#') === 0)) {

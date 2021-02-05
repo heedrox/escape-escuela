@@ -25,7 +25,7 @@ const EVIL_NAME = 'CHISPIS';
 
 export default {
   defaultActiveRoom: 4,
-  availableRooms: [2, 4, 5, 6, 7, 8, 9],
+  availableRooms: [2, 4, 5, 6, 7, 8],
   defaultUnlockedRooms: [4],
   defaultUnlockedItems: [],
   players: playerCodes,
@@ -51,10 +51,6 @@ export default {
 
 
     EVIL_NAME, //room 8 - mirror CHISPIS
-
-    'C', //room 8 puzzle easy
-    'CANE', //room 8
-    'MUERTEYODESTRUCTOR', //room 7- final 18 letter passcode
   ],
   fullScreenPlugins: [
     Whiteboard,
@@ -63,15 +59,15 @@ export default {
   items: [
     anItem(201, 2, 'room2.jpg'),
     anItem(202, 2, 'library.jpg'),
-    anItem(203, 2, 'room2-book.jpg'),
+    anItem(203, 2, '#LIBRO_BIBLIO#'),
     aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, 'ROOM_2_PIZARRA_ARGS'),
-    anItem(204, 2, 'varita.jpg'),
+    anItem(205, 2, 'varita.jpg'),
 
     anItem(401, 4, 'room-jail.jpg'),
     anItem(402, 4, 'lockbox-con-candado.jpg'),
     anItem(403, 4, 'poster-toystory.jpg'),
     anItem(404, 4, 'room4-escoba.jpg'),
-    anItem(405, 4, 'carta.jpg'),
+    anItem(405, 4, '#CARTA_INICIAL#'),
     anItem(406, 4, 'garfio.jpg'),
     anItem(407, 4, 'dron.jpg'),
     anItem(408, 4, 'llave.jpg'),

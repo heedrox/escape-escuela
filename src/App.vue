@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="appStyle">
     <div v-if="state === 'INIT'">
       Iniciando...
     </div>
@@ -49,9 +49,19 @@ export default {
   },
   data() {
     return {
+      publicPath: process.env.BASE_URL,
       state: STATES.INIT,
       gameState: null,
       loggedPromise: null,
+    }
+  },
+  computed: {
+    appStyle() {
+      return {
+        backgroundImage: gameConfig.background ?
+            `url('${this.publicPath}game/backgrounds/${gameConfig.background}')` :
+            `url('${this.publicPath}game/backgrounds/background.jpg')`
+      }
     }
   },
   async mounted() {
@@ -113,7 +123,6 @@ export default {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-image: url('./assets/common/background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

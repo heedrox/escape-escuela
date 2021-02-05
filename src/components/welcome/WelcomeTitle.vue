@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>ESCAPE DE</p>
-    <h1>GAZTELUETA</h1>
+    <h1>LA ESCUELA</h1>
     <a class="start" href="#" @click="$emit('start')">Empezar</a>
   </div>
 </template>
