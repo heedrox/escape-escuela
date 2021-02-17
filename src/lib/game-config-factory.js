@@ -7,7 +7,6 @@ export default {
     const configByGameCode = require('../config/game-config-' + gameCode).default;
 
     //codes
-    console.log(baseConfig);
     baseConfig.codes.push(configByGameCode.EVIL_NAME);
 
 

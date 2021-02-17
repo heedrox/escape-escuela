@@ -57,7 +57,7 @@ export default {
     MovingWizard
   ],
   items: [
-    anItem(201, 2, 'room2.jpg'),
+    anItem(201, 2, '#ROOM2_BIBLIO#'),
     anItem(202, 2, 'library.jpg'),
     anItem(203, 2, '#LIBRO_BIBLIO#'),
     aPluginItem(204, 2, 'pizarra-hint-3.jpg', PizarraHint, 'ROOM_2_PIZARRA_ARGS'),
@@ -72,7 +72,7 @@ export default {
     anItem(407, 4, 'dron.jpg'),
     anItem(408, 4, 'llave.jpg'),
 
-    anItem(501, 5, 'room.jpg'),
+    anItem(501, 5, '#ROOM5_POLI#'),
     aPluginItem(502, 5, 'dron-camera-game.jpg', DronCameraGame),
     anItem(503, 5, 'caja1.jpg'),
     anItem(504, 5, 'caja2.jpg'),
@@ -81,8 +81,11 @@ export default {
     aCorruptedItem(507, 5, 'caja2-paper.jpg', byNumberDestinataries([2], [2], [2])),
     aCorruptedItem(508, 5, 'caja3-paper.jpg', byNumberDestinataries([3], [3], [3,4])),
 
-    anItem(601, 6, 'room6-steam.jpg'),
+    anItem(601, 6, '#ROOM6_STEAM#'),
     anItem(602, 6, 'room6-armario.jpg'),
+    anItem(6021, 6, 'baumann-cuadro-3.jpg'),
+    anItem(6022, 6, 'baumann-cuadro-1.jpg'),
+    anItem(6023, 6, 'baumann-cuadro-2.jpg'),
     anItem(603, 6, 'room6-tetris-switch.jpg'),
     anItem(604, 6, 'room6-trampilla.jpg'),
     anItem(605, 6, 'battery.jpg'),
@@ -100,14 +103,14 @@ export default {
     anInvisibleItem(790, 7, 'monster-scream.mp3', 'MP3'),
     anInvisibleItem(791, 7, 'monster-laugh.mp3', 'MP3'),
 
-    anItem(801, 8, 'room8-aula.jpg'),
+    anItem(801, 8, '#ROOM8_AULA#'),
     anItem(802, 8, 'room8-espejo.jpg'),
     anItem(803, 8, 'room8-ordenador.jpg'),
     anItem(804, 8, 'tetris-solution.jpg'),
     anItem(805, 8, 'room8-ordenador-password.jpg'),
     aPluginItem(806, 8, 'room8-monitor-password-entered.jpg', PizarraHint, 'ROOM_8_COMPUTER_ARGS'),
     aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, 'ROOM_8_PIZARRA_ARGS'),
-    aVideoItem(808, 8, 'video-habenpub.mp4'),
+    aVideoItem(808, 8, '#VIDEO_PISTA#'),
     anInvisibleItem(890, 8, 'broken-glass.mp3', 'MP3'),
 
 

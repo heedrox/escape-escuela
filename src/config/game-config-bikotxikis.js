@@ -15,13 +15,18 @@ export default {
   'ROOM_6_PIZARRA_ARGS': { image: 'game/6/pizarra-hint-1.jpg', left: 15, top: 33,
     fontSize: 6, text: 'EL    TIEMPO    CORRE', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
   'ROOM_8_PIZARRA_ARGS': { image: 'game/8/pizarra-hint-2.jpg', left: 12, top: 37,
-    fontSize: 5.5, text: 'JUNTOS    SALIMOS', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
+    fontSize: 5.5, text: 'JUNTOS    SALDREMOS', evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
   'ROOM_8_COMPUTER_ARGS': { image: 'game/8/room8-monitor-password-entered.jpg', left: 37, top: 59,
     fontSize: 5, text: EVIL_NAME.split('').join(' '), evilName: EVIL_NAME, evilLetters: EVIL_LETTERS },
   images: {
     '#CARTA_INICIAL#': 'carta-bikotxikis.jpg',
     '#CUEVA_Y_HECHICERO#': 'cueva-y-hechicero-bikotxikis.jpg',
-    '#LIBRO_BIBLIO#': 'book-bikotxikis.jpg'
+    '#LIBRO_BIBLIO#': 'book-bikotxikis.jpg',
+    '#VIDEO_PISTA#': 'videopista-bikotxikis.mp4',
+    '#ROOM2_BIBLIO#': 'biblio-bikotxikis.jpg',
+    '#ROOM5_POLI#': 'poli-bikotxikis.jpg',
+    '#ROOM6_STEAM#': 'steamroom-bikotxikis.jpg',
+    '#ROOM8_AULA#': 'aula-bikotxikis.jpg'
   },
   welcomeText: [
     'Maite, Tasio, Nicole y Loic,<br /><br />',

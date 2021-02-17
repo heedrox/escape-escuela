@@ -112,7 +112,6 @@ export default {
       };
     },
     letters() {
-      console.log('current text', this.text);
       return this.text.split('');
     },
   },
@@ -131,7 +130,7 @@ export default {
           document.getElementById('fieldImage').getBoundingClientRect() : null;
     },
     isOrdinaryLetter(ltr) {
-      return this.evilName.toUpperCase().indexOf(ltr.toUpperCase()) === -1;
+      return ltr===' ' || this.evilName.toUpperCase().indexOf(ltr.toUpperCase()) === -1;
     },
     getLetterSrc(ltr) {
       const letterFile = this.evilLetters[ltr.toUpperCase()];

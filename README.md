@@ -39,7 +39,7 @@ https://domain/GAMECODE/numberplayers/usercode
 
 ## Email
 
-Belit y Clara,
+Belit y Clara, 👋
 
 ¡Estoy atrapado! ¿Podéis ayudarme?
 
