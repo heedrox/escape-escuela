@@ -22,7 +22,7 @@
                    width: holeWidth + 'px', height: holeHeight + 'px', }"
          @click="moveDron(0,-1)"
     />
-    <div v-if="canIMove('right') && dronCellPosition && (dronCellPosition.left < 7) && canMoveTo(1, 0)"
+    <div v-if="canIMove('right') && dronCellPosition && (dronCellPosition.left <= 7) && canMoveTo(1, 0)"
          class="arrow arrow-right"
          :style="{ left: arrowRightPos.left, top: arrowRightPos.top,
                    width: holeWidth + 'px', height: holeHeight + 'px', }"
@@ -34,7 +34,7 @@
                    width: holeWidth + 'px', height: holeHeight + 'px', }"
          @click="moveDron(-1, 0)"
     />
-    <div v-if="canIMove('bottom') && dronCellPosition && (dronCellPosition.top < 3) && canMoveTo(0, 1)"
+    <div v-if="canIMove('bottom') && dronCellPosition && (dronCellPosition.top <= 3) && canMoveTo(0, 1)"
          class="arrow arrow-bottom"
          :style="{ left: arrowBottomPos.left, top: arrowBottomPos.top,
                    width: holeWidth + 'px', height: holeHeight + 'px', }"
@@ -161,7 +161,6 @@ const COLISSION_CELLS = [
   aCell(1, 3),
   aCell(3, 3),
   aCell(5, 3),
-  aCell(7, 3),
 ];
 const byCell = (x,y) => n => n.x === x && n.y === y;
 
@@ -173,9 +172,9 @@ const BLANK_DRON_CELL_POSITION = {
 const WHO_CAN_MOVE = {
   'when2players' : {
     'up': [1],
-    'left': [1],
+    'left': [2],
     'right': [2],
-    'bottom': [2],
+    'bottom': [1],
   },
   'when3players' : {
     'up': [1],
@@ -204,10 +203,10 @@ export default {
   },
   computed: {
     holeWidth() {
-      return this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.width / 8): 0;
+      return this.fieldImageClientRect ? Math.floor(this.fieldImageClientRect.width / 9) + 1: 0;
     },
     holeHeight() {
-      return this.fieldImageClientRect ? Math.round(this.fieldImageClientRect.height / 4): 0;
+      return this.fieldImageClientRect ? Math.floor(this.fieldImageClientRect.height / 5) + 1: 0;
     },
     holeLeft() {
       return this.fieldImageClientRect ? this.fieldImageClientRect.left + 'px' : '0px';

@@ -82,10 +82,10 @@ export default {
     aCorruptedItem(508, 5, 'caja3-paper.jpg', byNumberDestinataries([3], [3], [3,4])),
 
     anItem(601, 6, '#ROOM6_STEAM#'),
-    anItem(602, 6, 'room6-armario.jpg'),
-    anItem(6021, 6, 'baumann-cuadro-3.jpg'),
+    anItem(602, 6, 'room6-armario-con-simbolos.jpg'),
+/*    anItem(6021, 6, 'baumann-cuadro-3.jpg'),
     anItem(6022, 6, 'baumann-cuadro-1.jpg'),
-    anItem(6023, 6, 'baumann-cuadro-2.jpg'),
+    anItem(6023, 6, 'baumann-cuadro-2.jpg'),*/
     anItem(603, 6, 'room6-tetris-switch.jpg'),
     anItem(604, 6, 'room6-trampilla.jpg'),
     anItem(605, 6, 'battery.jpg'),
@@ -108,7 +108,7 @@ export default {
     anItem(803, 8, 'room8-ordenador.jpg'),
     anItem(804, 8, 'tetris-solution.jpg'),
     anItem(805, 8, 'room8-ordenador-password.jpg'),
-    aPluginItem(806, 8, 'room8-monitor-password-entered.jpg', PizarraHint, 'ROOM_8_COMPUTER_ARGS'),
+    aPluginItem(806, 8, '#ROOM8_ORDENADOR_ON#', PizarraHint, 'ROOM_8_COMPUTER_ARGS'),
     aPluginItem(807, 8, 'pizarra-hint-2.jpg', PizarraHint, 'ROOM_8_PIZARRA_ARGS'),
     aVideoItem(808, 8, '#VIDEO_PISTA#'),
     anInvisibleItem(890, 8, 'broken-glass.mp3', 'MP3'),
